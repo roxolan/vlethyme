@@ -21,6 +21,11 @@ public class HomeController {
 		return "index-anonymous";
 	}
 	
+	@RequestMapping(value="/loggedin")
+	public String showIndexLoggedIn() {
+		return "index-loggedin";
+	}
+	
 	@RequestMapping(value="/me")
 	public String showMe() {
 		return "me";
