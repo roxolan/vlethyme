@@ -1,0 +1,712 @@
+a.plain-link:hover { text-decoration: underline; }
+
+.aural-text {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.threedots {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.panel-primary, .panel-secondary, .panel-tertiary {
+    padding: 15px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+i.icon-vle-private,
+i.icon-vle-loggedin,
+i.icon-vle-public {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+i.icon-vle-private:before,
+i.icon-vle-loggedin:before,
+i.icon-vle-public:before {
+    -webkit-border-radius: 500px;
+       -moz-border-radius: 500px;
+            border-radius: 500px;
+    color: #313131;
+    display: inline-block;
+    font-size: 15px;
+    width: 18px;
+    height: 16px;
+    padding-top: 1px;
+    text-align: center;
+}
+
+i.icon-vle-private:before {
+    background-color: #FFBC78;
+    content: "\f023";
+}
+
+i.icon-vle-loggedin:before {
+    background-color: #C4E6FF;
+    content: "\f041";
+}
+
+i.icon-vle-public:before {
+    background-color: #A6E0AB;
+    content: "\f0ac";
+}
+
+i[class^="icon-"].large {
+    width: 60px;
+    height: 60px;
+}
+
+i[class^="icon-"].large:before {
+    font-size: 50px;
+    height: 55px;
+    padding-top: 5px;
+    width: 60px;
+}
+
+.large-options-container label {
+    position: relative;
+}
+
+.large-options-container .large-options {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    height: 150px;
+    margin: 0 10px 15px 0;
+    padding-top: 13px;
+    width: 100%;
+}
+
+.large-options-container label:last-child .large-options {
+    margin-right: 0;
+}
+
+.large-options-container .large-options input {
+    position: absolute;
+    z-index: -1; /* Adding a z-index of -1 hides the element from the view but still allows for focus of the element */
+}
+
+.large-options-container .large-options i.icon-vle-private:before,
+.large-options-container .large-options i.icon-vle-loggedin:before,
+.large-options-container .large-options i.icon-vle-public:before {
+    margin-top: 6px;
+}
+
+.large-options-container .large-options span {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.large-options-container .large-options.checked {
+    border: 8px solid;
+    padding-top: 6px;
+}
+
+.large-options-container .large-options + i {
+    display: none;
+}
+
+.large-options-container .large-options.checked + i {
+    -webkit-border-radius: 100px;
+       -moz-border-radius: 100px;
+            border-radius: 100px;
+    display: block;
+    margin-left: 65px;
+    position: absolute;
+    top: 128px;
+}
+
+.large-options-container .large-options.checked + i:before {
+    font-size: 24px;
+    height: 30px;
+    padding-top: 5px;
+    width: 35px;
+}
+
+[class^="icon-"].icon-ok,
+[class*=" icon-"].icon-ok,
+[class^="icon-"].icon-ok:hover,
+[class*=" icon-"].icon-ok:hover {
+    color: #468847;
+}
+
+[class^="icon-"].icon-warning-sign,
+[class*=" icon-"].icon-warning-sign,
+[class^="icon-"].icon-warning-sign:hover,
+[class*=" icon-"].icon-warning-sign:hover {
+    color: #DD2222;
+}
+
+div.vle-thumbnail {
+    border: 1px solid;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+}
+
+div.vle-thumbnail:before {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: -11px;
+    padding-top: 50%;
+}
+
+div.vle-thumbnail a,
+div.vle-thumbnail div {
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+div.vle-thumbnail a {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+div.vle-thumbnail div {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.vle-thumbnail.vle-thumbnail-large:before {
+    font-size: 50px;
+    margin-top: -25px;
+}
+
+div.vle-thumbnail.icon-vle-content:before, div.vle-thumbnail.icon-vle-file:before {
+    content: "\f016";
+}
+
+div.vle-thumbnail.icon-vle-link:before {
+    content: "\f0c1";
+}
+
+div.vle-thumbnail.icon-vle-collabdoc:before {
+    content: "\f044";
+}
+
+div.vle-thumbnail.icon-vle-discussion:before {
+    content: "\f086";
+}
+
+div.vle-thumbnail.icon-vle-group:before {
+    content: "\f0c0";
+}
+
+div.vle-thumbnail.icon-vle-user:before {
+    content: "\f007";
+}
+
+div.vle-thumbnail i[class^="icon-"] {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+}
+
+.clip-container {
+    position: relative;
+    margin-bottom: 55px;
+}
+
+.clip-container .clip-container-left,
+.clip-container .clip-container-right {
+    position: absolute;
+}
+
+.clip-container .clip-container-right {
+    margin-right: 55px;
+    right: 0;
+}
+
+.clip {
+    float: left;
+    margin: -16px 10px 10px;
+    position: relative;
+    z-index: 100;
+}
+
+.clip .clip-fold {
+    height: 6px;
+    float: right;
+    margin-right: -7px;
+    position: relative;
+    width: 7px;
+    z-index: 10;
+}
+
+.clip.clip-flipped .clip-fold {
+    float: left;
+    margin-left: -9px;
+}
+
+.clip .clip-fold .clip-fold-inner {
+    -webkit-border-radius: 50px 50px 0 0;
+       -moz-border-radius: 50px 50px 0 0;
+            border-radius: 50px 50px 0 0;
+    float: left;
+    height: 6px;
+    margin-left: -1px;
+    position: absolute;
+    width: 9px;
+    z-index: 1;
+}
+.clip.clip-flipped .clip-fold .clip-fold-inner {
+    margin-left: 0;
+}
+
+.clip .clip-fold .clip-fold-outer {
+    float: right;
+    height: 6px;
+    margin-left: -5px;
+    position: absolute;
+    width: 7px;
+    z-index: 0;
+}
+.clip.clip-flipped .clip-fold .clip-fold-outer {
+    margin-left: 4px;
+}
+
+.clip .clip-content {
+    -webkit-border-radius: 6px 0 6px 6px;
+       -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+}
+
+.clip.clip-flipped .clip-content {
+    -webkit-border-radius: 0 6px 6px;
+       -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px;
+}
+
+.clip .clip-content > button {
+    width: 100%;
+}
+
+.clip .clip-content > button,
+.clip .clip-content ul li button {
+    background: none;
+    border: none;
+    font-weight: 600;
+    padding: 14px 20px 14px 14px;
+    text-align: left;
+}
+
+.clip .clip-content > button:disabled {
+    cursor: default;
+}
+
+.clip .clip-content > button > div {
+    float: left;
+}
+
+.clip .clip-content > button > div:nth-child(2) > div {
+    display: table-cell;
+    height: 35px;
+    vertical-align: middle;
+}
+
+.clip .clip-content > button div.vle-thumbnail {
+    border: none;
+    height: 35px;
+    margin-right: 12px;
+    width: 35px;
+}
+
+.clip .clip-content h1 {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1.3;
+    margin: 0;
+    font-weight: 600;
+    max-width: 300px;
+    min-height: 21px;
+    word-wrap: nowrap;
+}
+
+.clip .clip-content h1.threedots {
+    float: left;
+}
+
+.clip .clip-content > button i.icon-caret-down,
+.clip .clip-content > button i.icon-caret-up {
+    margin-left: 5px;
+    line-height: 16px;
+    position: relative;
+    top: 2px;
+}
+
+.clip .clip-content > button h1.threedots + i.icon-caret-down,
+.clip .clip-content > button h1.threedots + i.icon-caret-up {
+    margin-left: 10px;
+}
+
+.clip .clip-content > button:disabled i.icon-caret-down,
+.clip .clip-content > button:disabled i.icon-caret-up {
+    display: none;
+}
+
+.clip .clip-content small {
+    clear: both;
+    display: block;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.clip .clip-content > div > ul {
+    list-style: none;
+    margin: 0 10px;
+    display: none;
+}
+
+.clip .clip-content > div > ul li {
+    display: inline;
+}
+
+.clip .clip-content > div > ul li button {
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    font-size: 11px;
+    min-width: 70px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.clip .clip-content > div > ul li button i {
+    display: block;
+    margin: 0 auto 3px;
+}
+
+.vle-tile,
+.vle-list.vle-list-grid > li.vle-list-actions {
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.vle-tile .vle-thumbnail,
+.vle-tile .vle-thumbnail a,
+.vle-tile .vle-thumbnail img {
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+}
+
+.vle-tile .vle-thumbnail:before {
+    margin-top: -30px;
+}
+
+.vle-tile .vle-thumbnail.vle-thumbnail-large:before {
+    margin-top: -50px;
+}
+
+.vle-tile > .vle-tile-metadata {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 7px;
+}
+
+.vle-tile h3,
+.vle-tile h3 a {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.vle-tile small {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.5;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.vle-listitem {
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 50px;
+    border: 1px solid;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.vle-listitem.vle-listitem-compact {
+    min-height: 27px;
+}
+
+.vle-listitem input[type="checkbox"].pull-left {
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.vle-listitem.vle-listitem-compact input[type="checkbox"].pull-left {
+    margin-top: 6px;
+}
+
+.vle-listitem .vle-thumbnail {
+    float: left;
+    height: 50px;
+    width: 50px;
+    margin-right: 15px;
+}
+
+.vle-listitem.vle-listitem-compact .vle-thumbnail {
+    height: 25px;
+    width: 25px;
+}
+
+.vle-listitem > div:not(.vle-thumbnail) {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+}
+
+.vle-listitem.vle-listitem-compact > div:not(.vle-thumbnail) {
+    height: 25px;
+    width: auto;
+}
+
+.vle-listitem h3 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25px;
+    margin: 0;
+    max-width: 450px;
+}
+
+.vle-listitem small {
+    line-height: 1;
+    font-size: 11px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.vle-listitem.vle-listitem-compact small {
+    display: inline-block;
+    line-height: 25px;
+    margin-left: 20px;
+}
+
+.vle-listitem .vle-listitem-actions {
+    width: 100%;
+    text-align: right;
+}
+
+.vle-listitem .vle-listitem-actions i {
+    font-size: 18px;
+}
+
+ul.vle-list {
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+ul.vle-list > li {
+    list-style: none;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+ul.vle-list:not(.vle-list-grid) > li > .vle-list-grid-item,
+ul.vle-list:not(.vle-list-details) > li > .vle-list-details-item,
+ul.vle-list:not(.vle-list-compact) > li > .vle-list-compact-item {
+    display: none;
+}
+
+ul.vle-list.vle-list-grid > li {
+    float: left;
+    margin: 0 14px 24px 0;
+}
+
+ul.vle-list.vle-list-grid > li .vle-thumbnail,
+ul.vle-list.vle-list-grid > li.vle-list-actions {
+    height: 162px;
+    width: 162px;
+}
+
+ul.vle-list > li .vle-list-details-item,
+ul.vle-list > li .vle-list-compact-item  {
+    display: table;
+    width: 100%;
+}
+
+ul.vle-list > li .vle-listitem {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+ul.vle-list > li:first-child .vle-listitem {
+    margin-top: 0px;
+}
+
+.vle-list-options {
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 20px;
+}
+
+.vle-list-options > div {
+    line-height: 30px;
+    margin-bottom: 15px;
+    clear: both;
+}
+
+.vle-list-options .vle-list-options-toggle,
+.vle-list-options .btn.vle-list-options-toggle,
+.vle-list-options .btn.vle-list-options-toggle:disabled,
+.vle-list-options .btn.vle-list-options-toggle:hover,
+.vle-list-options .btn.vle-list-options-toggle:active,
+.vle-list-options .btn.vle-list-options-toggle:focus {
+    background: none;
+    border: none;
+    filter: none;
+    padding: 1px 0;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+}
+
+.vle-list-options .vle-list-options-toggle h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.vle-list-options .vle-list-options-toggle h2 .badge {
+    margin-left: 5px;
+    top: -3px;
+}
+
+.vle-list-options .vle-list-options-toggle:disabled {
+    cursor: auto;
+}
+
+.vle-list-options .vle-list-options-toggle:disabled .icon-caret-down,
+.vle-list-options .vle-list-options-toggle:disabled .icon-caret-up {
+    display: none;
+}
+
+.vle-list-options form {
+    margin-bottom: 0;
+}
+
+.vle-list-options .vle-list-options-actions > input,
+.vle-list-options .vle-list-options-actions > button {
+    margin-right: 7px;
+}
+
+.vle-list-options .vle-list-options-actions .btn i {
+    font-size: 18px;
+}
+
+.vle-list-options .btn-group .btn i {
+    font-size: 12px;
+}
+
+.vle-list-actions ul {
+    margin: 0px;
+}
+
+.vle-list-actions ul > li {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+ul.vle-list.vle-list-grid > li.vle-list-actions {
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+}
+
+ul.vle-list.vle-list-grid li.vle-list-actions div.vle-thumbnail {
+    background: none;
+    border-width: 1px;
+    border-style: dashed;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    height: 150px;
+    margin: 5px;
+    width: 150px;
+}
+
+ul.vle-list.vle-list-grid .vle-list-actions div.vle-thumbnail:before {
+    margin-top: -40px;
+}
+
+ul.vle-list.vle-list-grid .vle-list-actions.vle-list-actions-multiple div.vle-thumbnail:before {
+    margin-top: -60px;
+}
+
+ul.vle-list.vle-list-grid .vle-list-actions .btn i {
+    display: none;
+}
+
+ul.vle-list.vle-list-grid .vle-list-actions ul {
+    bottom: 15px;
+    left: 0;
+    padding: 7px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+
+ul.vle-list.vle-list-grid .vle-list-actions.vle-list-actions-multiple ul {
+    bottom: 5px;
+}
+
+ul.vle-list:not(.vle-list-grid) .vle-list-actions {
+    height: 50px;
+}
+
+ul.vle-list:not(.vle-list-grid) .vle-list-actions div.vle-thumbnail {
+    display: none;
+}
+
+ul.vle-list:not(.vle-list-grid) .vle-list-actions ul > li {
+    display: inline;
+    margin-right: 10px;
+}

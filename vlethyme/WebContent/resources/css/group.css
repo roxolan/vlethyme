@@ -1,0 +1,16 @@
+/* Join group */
+
+#group-join-container {
+    display: table;
+    width: 100%;
+}
+
+#group-join-container #group-join {
+    display: table-cell;
+    height: 350px;
+    vertical-align: middle;
+}
+
+#group-join-container #group-join > div {
+    margin-bottom: 15px;
+}

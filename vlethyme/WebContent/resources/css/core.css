@@ -1,0 +1,24 @@
+/* Import the Bootstrap CSS file */
+@import url('vendor/bootstrap.css');
+    /* Import the JQuery Bootstrap Notify plugin CSS */
+@import url('vendor/jquery.bootstrap.notify.css');
+
+    /* Import the Font Awesome Icon Set */
+@import url('vendor/font-awesome/css/font-awesome.css');
+    /* Import the Open Sans font */
+@import url('vendor/opensans/css/opensans.css');
+
+    /* Import the JQuery AutoSuggest plugin CSS */
+@import url('vendor/jquery.autoSuggest.css');
+
+    /* Import the OAE Core styles. These will be used for bootstrap overrides, as well
+       as styles used in the main portal that are not expected to be re-used in widgets */
+@import url('base.css');
+
+    /* Import the OAE Component Styles. These contain OAE specific re-usable styles that,
+       combined with basic bootstrap, should make it easy to quickly put new widgets together */
+@import url('components.css');
+
+    /* Import the Google, Facebook and Twitter login, as this will be needed on every
+       page because of the topnavigation */
+@import url('vendor/auth-buttons.css');

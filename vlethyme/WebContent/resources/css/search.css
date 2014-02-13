@@ -1,0 +1,24 @@
+/* Search clip overrides */
+
+#search-clip-container .oae-clip-content {
+    padding: 15px;
+}
+
+#search-clip-container .oae-clip-content #search-form {
+    margin: 0 20px 0 10px;
+}
+
+#search-clip-container .oae-clip-content .search-query {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+/* Search container */
+
+#search-content-container {
+    padding: 10px;
+}
+
+#search-content-container #search-list-container {
+    padding: 5px 75px 50px 0px;
+}

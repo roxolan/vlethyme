@@ -1,0 +1,10 @@
+#footer-container,
+#footer-container .btn {
+    margin: 20px 1%;
+    font-size: 11px;
+}
+
+#footer-container .oae-trigger-termsandconditions {
+    margin: -2px 0 0;
+    padding: 0;
+}
