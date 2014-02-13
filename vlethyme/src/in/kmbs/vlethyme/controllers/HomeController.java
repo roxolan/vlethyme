@@ -11,9 +11,14 @@ public class HomeController {
 
 
 	@RequestMapping(value="/")
-	public String showHome() {
+	public String showIndex() {
 		logger.info("Показую домашню сторінку -- showing home page....");
 		return "index";
+	}
+	
+	@RequestMapping(value="/anon")
+	public String showIndexAnonymous() {
+		return "index-anonymous";
 	}
 	
 	@RequestMapping(value="/me")
