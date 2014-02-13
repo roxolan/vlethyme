@@ -30,4 +30,9 @@ public class HomeController {
 	public String showMe() {
 		return "me";
 	}
+	
+	@RequestMapping(value="/group")
+	public String showGroup() {
+		return "group";
+	}
 }
