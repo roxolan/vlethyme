@@ -13,6 +13,6 @@ public class HomeController {
 	@RequestMapping(value="/")
 	public String showHome() {
 		logger.info("Показую домашню сторінку -- showing home page....");
-		return "home";
+		return "index";
 	}
 }
