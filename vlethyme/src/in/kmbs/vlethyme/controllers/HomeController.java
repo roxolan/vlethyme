@@ -15,4 +15,9 @@ public class HomeController {
 		logger.info("Показую домашню сторінку -- showing home page....");
 		return "index";
 	}
+	
+	@RequestMapping(value="/me")
+	public String showMe() {
+		return "me";
+	}
 }
