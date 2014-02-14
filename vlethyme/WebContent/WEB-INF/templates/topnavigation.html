@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="topNavHead(title,localCss)">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <link rel="stylesheet" type="text/css" th:href="@{static/css/core.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{static/css/skin.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{static/css/topnavigation.css}" />
+        <link rel="stylesheet" type="text/css" th:attr="href='static/css/' + ${localCss} + '.css'" />
+		        
+  		<title th:text = "${title}"></title>
+ 
+        
+	</head>
+
+	<body>
+	
+		<div id="topnavigation_container" th:fragment="topNavContainer">
+	    	<!-- NAVIGATION -->
+		    <div class="row-fluid">
+		        <!-- LEFT MENU -->
+		        <div id="topnavigation_left" class="span5">
+		            <ul class="inline topnavigation-menu-buttons">
+		                <li>
+		                    <a href="/me" class="btn btn-link" title="Home">
+		                        <i class="icon-home"><span class="aural-text">Home</span></i>
+		                    </a>
+		                </li>
+		                <li>
+		                    <button type="button" class="btn btn-link oae-trigger-notifications" title="Notifications" >
+		                        <i class="icon-bullhorn"><span class="aural-text">Notifications</span></i>
+		                        <span id="topnavigation-notification-count" class="badge badge-important">1</span>
+		                    </button>
+		                </li>
+		            </ul>
+		        </div>
+		        <!-- LOGO -->
+		        <div id="topnavigation_center" class="span2 text-center">
+		            <a href="/" class="institutional-logo" title="kmbs Virtual Learning Environment">
+		                <span class="aural-text">kmbs Virtual Learning Environment</span>
+		            </a>
+		        </div>
+		        <!-- RIGHT MENU -->
+		        <div id="topnavigation_right" class="span5 text-right">
+		            <!-- SEARCH -->
+		            <form id="topnavigation_search_form" class="navbar-search">
+		                <label for="topnavigation_search_query" class="aural-text">Search</label>
+		                <input type="text" id="topnavigation_search_query" class="search-query" title="Search for documents, files, links, people and groups"/>
+		                <button type="submit" id="topnavigation_search_icon" class="btn btn-link">
+		                    <i class="icon-search"><span class="aural-text">Search</span></i>
+		                </button>
+		                <button type="button" id="topnavigation-signout" class="btn btn-link" title="Sign out">
+		                    <i class="icon-signout"><span class="aural-text">Sign out</span></i>
+		                </button>
+		
+		            </form>
+		        </div>
+		    </div>
+		</div>
+	<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
+	
+	
+	
+
+	</body>
+</html>

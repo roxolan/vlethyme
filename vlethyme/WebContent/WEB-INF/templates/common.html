@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-	<head th:fragment="commonHeader">
+	<head th:fragment="commonHeader(title)">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <!-- CORE CSS -->
         <link rel="stylesheet" type="text/css" th:href="@{static/css/core.css}" />
-        <link rel="stylesheet" type="text/css" th:href="@{static/css/skin.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{static/css/skin.css}" />        
+        
+  		<title th:text = "${title}"></title>
+        
 	</head>
 
 	<body>
