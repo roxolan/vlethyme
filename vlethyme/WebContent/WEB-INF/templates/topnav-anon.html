@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="topNavAnonHead">
+        
+	</head>
+
+	<body>
+		<div id="topnavigation_container" th:fragment="topNavAnonContainer">
+		    <!-- NAVIGATION -->
+		    <div class="row-fluid">
+		        <!-- LEFT MENU -->
+		        <div id="topnavigation_left" class="span5"><!-- -->
+		            <button type="button" class="btn btn-link trigger-register">Membership request</button>
+		        </div>
+		        <!-- LOGO -->
+		        <div id="topnavigation_center" class="span2 text-center">
+		            <a href="/" class="institutional-logo" title="kmbs Virtual Learning Environment">
+		                <span class="aural-text">kmbs Virtual Learning Environment</span>
+		            </a>
+		        </div>
+		        <!-- RIGHT MENU -->
+		        <div id="topnavigation_right" class="span5 text-right">
+		            <!-- SEARCH -->
+		            <form id="topnavigation_search_form" class="navbar-search">
+		                <label for="topnavigation_search_query" class="aural-text">Search</label>
+		                <input type="text" id="topnavigation_search_query" class="search-query" title="Search for documents, files, links, people and groups"/>
+		                <button type="submit" id="topnavigation_search_icon" class="btn btn-link">
+		                    <i class="icon-search"><span class="aural-text">Search</span></i>
+		                </button>
+		            </form>
+		
+		            <!-- SIGN IN FORM -->
+		            <ul class="pull-right inline topnavigation-menu-buttons">
+		                <li class="dropdown">
+		                    <button type="button" id="topnavigation-signin" class="btn btn-link dropdown-toggle" data-toggle="dropdown">Sign in</button>
+		                    <div id="topnavigation-signin-dropdown" class="dropdown-menu pull-right text-left topnavigation-signin-dropdown-single">
+		                        <div class="row-fluid">
+		                            <div id="topnavigation-signin-internal" class="span12">
+		                                <form id="topnavigation-signin-form">
+		                                    <div class="control-group">
+		                                        <label for="topnavigation-signin-username" class="control-label">Username</label>
+		                                        <input id="topnavigation-signin-username" name="topnavigation-signin-username" type="text" class="input-block-level required" maxlength="255"/>
+		                                    </div>
+		                                    <div class="control-group">
+		                                        <label for="topnavigation-signin-password" class="control-label">Password</label>
+		                                        <input id="topnavigation-signin-password" name="topnavigation-signin-password" type="password" class="input-block-level required" maxlength="255"/>
+		                                    </div>
+		                                    <div id="topnavigation-login-actions">
+		                                        <button id="topnavigation-signin-button" class="btn btn-primary pull-right" type="submit">Sign in</button>
+		                                        <span id="topnavigation-signin-signing-in" class="hide pull-right">Signing in...</span>
+		                                    </div>
+		                                </form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </li>
+		            </ul>
+		        </div>
+		    </div>
+		</div>
+		<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
+
+	</body>
+</html>
