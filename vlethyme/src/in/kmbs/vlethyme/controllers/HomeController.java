@@ -31,8 +31,23 @@ public class HomeController {
 		return "me";
 	}
 	
+	@RequestMapping(value="/content")
+	public String showContent() {
+		return "content";
+	}
+	
 	@RequestMapping(value="/group")
 	public String showGroup() {
 		return "group";
+	}
+	
+	@RequestMapping(value="/course")
+	public String showCourse() {
+		return "course";
+	}
+	
+	@RequestMapping(value="/program")
+	public String showProgram() {
+		return "program";
 	}
 }
