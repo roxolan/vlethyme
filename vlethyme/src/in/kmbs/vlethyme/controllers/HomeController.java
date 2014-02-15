@@ -68,4 +68,9 @@ public class HomeController {
 	public String showProgram() {
 		return "program";
 	}
+	
+	@RequestMapping(value="/search")
+	public String showSearch() {
+		return "search";
+	}
 }

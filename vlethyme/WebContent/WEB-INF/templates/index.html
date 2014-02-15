@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        
-        <!-- CORE CSS -->
-        <link rel="stylesheet" type="text/css" th:href="@{static/css/core.css}" />
-        <link rel="stylesheet" type="text/css" th:href="@{static/css/skin.css}" />
+	xmlns:th="http://www.thymeleaf.org">
 
-        <!-- PAGE CSS -->
-        <link rel="stylesheet" type="text/css" th:href="@{static/css/index.css}"/>
-		
-		<title>VLE kmbs</title>
-	</head>
+<head
+	th:include="commonlocal :: commonHeaderLocal('VLE kmbs','index')">
+</head>
 
-	<body>
 
-        <!-- HEADER -->
-        <div id="topnavigation"><!-- --></div>
+<body>
 
-        <!-- INDEX Container -->
+	<!-- HEADER -->
+	<div id="topnavigation">
+		<!-- -->
+	</div>
 
-        <div id="index-container" class="branding-container main-content">
+	<!-- INDEX Container -->
 
-            body of index here
+	<div id="index-container" class="branding-container main-content">
 
-        </div>
+		body of index here</div>
 
-	</body>
+</body>
 </html>
