@@ -17,13 +17,11 @@ public class UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Transactional
 	public Session session() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -32,26 +30,10 @@ public class UserDao {
 	public void create(User user) {
 		session().save(user);
 	}
-
-	@Transactional
+	
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
-		return this.sessionFactory.openSession().createQuery("from User").list();
+		return session().createQuery("from User").list();
 	}
 	
-/*
- Search for Hibernate issue solution (no session found for current thread):
- http://stackoverflow.com/questions/9717906/org-hibernate-hibernateexception-get-is-not-valid-without-active-transaction
- --> ultimately used openSession() instead of getCurrentSession()
- ------- other links
- http://stackoverflow.com/questions/4699381/best-way-to-inject-hibernate-session-by-spring-3
- http://stackoverflow.com/questions/20716939/spring-hibernate-no-session-found-for-current-thread
- .... 
- *
- */
-
-	@Transactional
-	public User getFirstUser() {
-		return (User)session().createQuery("from User as user");
-	}
 }
