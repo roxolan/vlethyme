@@ -1,0 +1,16 @@
+/* Join course */
+
+#course-join-container {
+    display: table;
+    width: 100%;
+}
+
+#course-join-container #course-join {
+    display: table-cell;
+    height: 350px;
+    vertical-align: middle;
+}
+
+#course-join-container #course-join > div {
+    margin-bottom: 15px;
+}

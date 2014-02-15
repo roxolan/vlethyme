@@ -5,7 +5,6 @@ import java.util.List;
 import in.kmbs.vlethyme.dao.User;
 import in.kmbs.vlethyme.service.UserService;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-	
-	private static Logger logger = Logger.getLogger(HomeController.class);
-	
+		
 	private UserService userService;
 
 	@Autowired
@@ -25,18 +22,7 @@ public class HomeController {
 
 	@RequestMapping(value="/")
 	public String showIndex() {
-		logger.info("Показую домашню сторінку -- showing home page....");
 		return "index";
-	}
-	
-	@RequestMapping(value="/anon")
-	public String showIndexAnonymous() {
-		return "index-anonymous";
-	}
-	
-	@RequestMapping(value="/loggedin")
-	public String showIndexLoggedIn() {
-		return "index-loggedin";
 	}
 	
 	@RequestMapping(value="/me")

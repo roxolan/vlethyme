@@ -2,30 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="common :: commonHeader('My Environment')" />
+<head th:include="topnav :: topNavHead('My Environment')" />
 
 
-    <body>
+<body>
 
-        <!-- HEADER -->
-        <div id="topnavigation_loggedin"><!-- --></div>
+<!-- HEADER -->
+<div id="topnavigation">
+	<div id="topnavigation_container" th:include="layout :: topNavContainerLoggedIn"></div> 
+</div>
+<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
 
-        <!-- BODY -->
-        <div class="main-content">
+<!-- BODY -->
+<div class="main-content">
 
-            <!-- CLIPS -->
-            <div class="clip-container">
-                <div id="me-clip-container" class="clip-container-left"><!-- --></div>
-                <div id="right-second-clips-container" class="clip-container-right"><!-- --></div>
-            </div>
+    <!-- CLIPS -->
+    <div class="clip-container">
+        <div id="me-clip-container" class="clip-container-left"><!-- --></div>
+        <div id="right-second-clips-container" class="clip-container-right"><!-- --></div>
+    </div>
 
-            <!-- CONTENT -->
-            <div id="lhnavigation"><!-- --></div>
-        </div>
+    <!-- CONTENT -->
+    <div id="lhnavigation"><!-- --></div>
+</div>
 
-        <!-- FOOTER -->
-        <div id="footer"><!-- --></div>
+<!-- FOOTER -->
+<div id="footer"><!-- --></div>
 
-    </body>
+</body>
 
 </html>

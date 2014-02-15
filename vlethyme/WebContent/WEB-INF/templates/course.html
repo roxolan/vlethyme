@@ -2,12 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="topnav :: topNavHead('Course Placeholder', 'course')" />
+<head th:include="topnavlocal :: topNavHeadLocal('Course Placeholder', 'course')" />
 
 
 <body>
 
-	<div th:include="topnav :: topNavContainer"></div>
+<!-- HEADER -->
+<div id="topnavigation">
+	<div id="topnavigation_container" th:include="layout :: topNavContainerLoggedIn"></div> 
+</div>
+<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
 
 </body>
 </html>

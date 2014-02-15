@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+/* Join program */
+
+#program-join-container {
+    display: table;
+    width: 100%;
+}
+
+#program-join-container #program-join {
+    display: table-cell;
+    height: 350px;
+    vertical-align: middle;
+}
+
+#program-join-container #program-join > div {
+    margin-bottom: 15px;
+}

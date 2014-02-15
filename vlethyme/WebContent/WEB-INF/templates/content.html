@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="topnavlocal :: topNavHeadLocal('Group Place', 'group')" />
-
+<head
+	th:include="topnav :: topNavHead('Content Page')">
+</head>
 
 <body>
 
@@ -14,16 +15,10 @@
 <h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
 
 
-
-<div th:text="${users}"></div>
-
-<script type="text/javascript">
-
-	$(document).ready(function(){
-		alert("Group");
-	});
-
-</script>
+    body of content here
 
 </body>
+
 </html>
+
+

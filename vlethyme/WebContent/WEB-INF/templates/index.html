@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-
+      xmlns:th="http://www.thymeleaf.org">
 <head
-	th:include="commonlocal :: commonHeaderLocal('VLE kmbs','index')">
+	th:include="topnavlocal :: topNavHeadLocal('Index','index')">
 </head>
-
 
 <body>
 
-	<!-- HEADER -->
-	<div id="topnavigation">
-		<!-- -->
-	</div>
+<!-- HEADER -->
+<div id="topnavigation" th:include="layout :: topNavContainerAnon"></div>
 
-	<!-- INDEX Container -->
-
-	<div id="index-container" class="branding-container main-content">
-
-		body of index here</div>
+<div id="index-container" class="branding-container main-content" th:include="layout :: indexContainerAnon"></div>
 
 </body>
 </html>
