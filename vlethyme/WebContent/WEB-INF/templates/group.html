@@ -7,11 +7,17 @@
 
 <body>
 
-	<div th:include="topnav :: topNavContainer"></div>
-	
-	<div th:text="${users}">
-	
-	</div>
+<div th:include="topnav :: topNavContainer"></div>
+
+<div th:text="${users}"></div>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		alert("Hello");
+	});
+
+</script>
 
 </body>
 </html>
