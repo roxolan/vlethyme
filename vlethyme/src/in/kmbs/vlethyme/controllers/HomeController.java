@@ -59,4 +59,19 @@ public class HomeController {
 	public String showSearch() {
 		return "search";
 	}
+	
+	@RequestMapping(value="/discussion")
+	public String showDiscussion() {
+		return "discussion";
+	}
+	
+	@RequestMapping(value="/user")
+	public String showUser() {
+		return "user";
+	}
+	
+	@RequestMapping(value="/calendar")
+	public String showCalendar() {
+		return "calendar";
+	}
 }

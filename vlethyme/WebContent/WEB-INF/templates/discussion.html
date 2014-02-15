@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="topnavlocal :: topNavHeadLocal('Discussion Placeholder', 'discussion')" />
+
+
+<body>
+
+<!-- HEADER -->
+<div id="topnavigation">
+	<div id="topnavigation_container" th:include="layout :: topNavContainerLoggedIn"></div> 
+</div>
+<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
+
+
+
+<div>Discussion Placeholder</div>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		alert("Discussion");
+	});
+
+</script>
+
+</body>
+</html>
