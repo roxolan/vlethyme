@@ -143,7 +143,71 @@
     </div>
 </div>
 
+<div th:fragment="meClipTemplate">
+    <div class="clip">
+        <div class="clip-fold">
+            <div class="clip-fold-inner"></div>
+            <div class="clip-fold-outer"></div>
+        </div>
+        <div class="clip-content">
+            <button type="button">
+                <div>
+                    <div>
+                        <h1 class="threedots">Віктор Котусенко</h1>
+                        <i class="icon-caret-down"></i>
+                        <small>учасник EMBA19</small>
+                    </div>
+                </div>
+            </button>
+            <div>
+                <ul>
+                    <li><button class="trigger-changepic"><i class="icon-camera"></i>Моє фото</button></li>
+                    <li><button class="trigger-editprofile"><i class="icon-user"></i>Мій профіль</button></li>
+                    <li><button class="trigger-accountpreferences"><i class="icon-wrench"></i>Мої налаштування</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div th:fragment="downloadClip">
+    <div class="clip-fold">
+        <div class="clip-fold-inner"></div>
+        <div class="clip-fold-outer"></div>
+    </div>
+    <div class="clip-content">
+        <button type="button" class="trigger-upload">
+            <div>
+                <i class="icon-cloud-upload pull-left"></i>
+                <h1>Завантажити</h1>
+            </div>
+        </button>
+    </div>
+</div>
+
+<div class="" th:fragment="rightSideClip">
+    <div class="clip-fold">
+        <div class="clip-fold-inner"></div>
+        <div class="clip-fold-outer"></div>
+    </div>
+    <div class="clip-content">
+        <button type="button">
+            <div>
+                <i class="icon-plus-sign pull-left"></i>
+                <h1>Додати</h1>
+                <i class="icon-caret-down"></i>
+            </div>
+        </button>
+        <div>
+            <ul>
+                <li><button class="trigger-creategroup"><i class="icon-group"></i>Групу</button></li>
+                <li><button class="trigger-createlink"><i class="icon-link"></i>Посилання</button></li>
+                <li><button class="trigger-createcollabdoc"><i class="icon-edit"></i>Документ</button></li>
+                <li><button class="trigger-creatediscussion"><i class="icon-comments"></i>Дискусію</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
 

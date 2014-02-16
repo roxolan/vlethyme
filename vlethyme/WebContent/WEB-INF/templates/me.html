@@ -18,8 +18,13 @@
 
     <!-- CLIPS -->
     <div class="clip-container">
-        <div id="me-clip-container" class="clip-container-left"><!-- --></div>
-        <div id="right-second-clips-container" class="clip-container-right"><!-- --></div>
+        <div id="me-clip-container" class="clip-container-left">
+        	<div id="me-clip-template" th:include="layout :: meClipTemplate"></div>
+        </div>
+        <div id="right-second-clips-container" class="clip-container-right">
+        	<div class="clip clip-flipped vle-dnd-upload" th:include="layout :: downloadClip"></div>
+           	<div class="clip clip-secondary clip-flipped" th:include="layout :: rightSideClip"></div>     	
+        </div>
     </div>
 
     <!-- CONTENT -->
