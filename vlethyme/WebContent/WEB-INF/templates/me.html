@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="navjs :: topNavHeadJs('My Environment','me')" />
 
 
 <body>
 
-<!-- HEADER -->
-<div id="topnavigation">
-	<div id="topnavigation_container" th:include="layout :: topNavContainerLoggedIn"></div> 
-</div>
-<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
+	<!-- HEADER -->
+	<div id="topnavigation">
+		<div id="topnavigation_container"
+			th:include="layout :: topNavContainerLoggedIn"></div>
+	</div>
+	<h1 id="topnavigation_target" class="aural-text">Content begins
+		here</h1>
 
-<!-- BODY -->
-<div class="main-content">
+	<!-- BODY -->
+	<div class="main-content">
 
-    <!-- CLIPS -->
-    <div class="clip-container">
-        <div id="me-clip-container" class="clip-container-left">
-        	<div id="me-clip-template" th:include="layout :: meClipTemplate"></div>
-        </div>
-        <div id="right-second-clips-container" class="clip-container-right">
-        	<div class="clip clip-flipped vle-dnd-upload" th:include="layout :: downloadClip"></div>
-           	<div class="clip clip-secondary clip-flipped" th:include="layout :: rightSideClip"></div>     	
-        </div>
-    </div>
+		<!-- CLIPS -->
+		<div class="clip-container">
+			<div id="me-clip-container" class="clip-container-left">
+				<div id="me-clip-template" th:include="layout :: meClipTemplate"></div>
+			</div>
+			<div id="right-second-clips-container" class="clip-container-right">
+				<div class="clip clip-flipped vle-dnd-upload"
+					th:include="layout :: downloadClip"></div>
+				<div class="clip clip-secondary clip-flipped"
+					th:include="layout :: rightSideClip"></div>
+			</div>
+		</div>
 
-    <!-- CONTENT -->
-    <div id="lhnavigation">
-    
-    </div>
-</div>
+		<!-- CONTENT -->
+		<div id="lhnavigation">
+			<div id="lhnavigation-container" class="row-fluid">
+				<div class="span2">
+					<div id="lhnavigation-navigation" th:include="layout :: leftHandNavMenu">
+						<!-- -->
+					</div>
+				</div>
+				<div id="lhnavigation-page" class="span10">
+					<!-- -->
+				</div>
+			</div>
+		</div>
+	</div>
 
-<!-- FOOTER -->
-<div id="footer"><!-- --></div>
+	<!-- FOOTER -->
+	<div id="footer">
+		<!-- -->
+	</div>
 
 </body>
 
