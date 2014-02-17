@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="topNavHead(title)">
+<head th:fragment="topNavHeadLocal(title,localCss)">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
       <link rel="stylesheet" type="text/css" th:href="@{static/css/core.css}" />
       <link rel="stylesheet" type="text/css" th:href="@{static/css/skin.css}" />
-      <link rel="stylesheet" type="text/css" th:href="@{static/css/topnavigation.css}" />
+      <link rel="stylesheet" type="text/css" th:href="@{static/css/navigation.css}" />
+      <link rel="stylesheet" type="text/css" th:attr="href='static/css/' + ${localCss} + '.css'" />
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.0.min.js"
 	th:src="@{/static/js/vendor/jquery.js}"></script>
 		        
-<title th:text = "${title}"></title>
+<title th:text = "${title}"></title>       
 </head>
-<body>
-	
 
-	
+<body>
+
+
+
+
 </body>
 </html>
