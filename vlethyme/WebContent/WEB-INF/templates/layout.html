@@ -259,26 +259,26 @@
 
 	<div th:fragment="leftHandNavMenu">
 		<ul class="nav nav-list">
-			<li id="dashboard"><a href="javascript:void(0)"> <i class="icon-dashboard"></i>
-					Оновлення
+			<li id="dashboard"><a href="javascript:void(0)"> <i
+					class="icon-dashboard"></i> Оновлення
 			</a></li>
-			<li id="courses"><a href="javascript:void(0)"> <i class="icon-bell"></i>
-					Навчання
+			<li id="courses"><a href="javascript:void(0)"> <i
+					class="icon-bell"></i> Навчання
 			</a></li>
-			<li id="calendar"><a href="javascript:void(0)"> <i class="icon-calendar"></i>
-					Календар
+			<li id="calendar"><a href="javascript:void(0)"> <i
+					class="icon-calendar"></i> Календар
 			</a></li>
-			<li id="library"><a href="javascript:void(0)"> <i class="icon-briefcase"></i>
-					Бібліотека
+			<li id="library"><a href="javascript:void(0)"> <i
+					class="icon-briefcase"></i> Бібліотека
 			</a></li>
-			<li id="discussions"><a href="javascript:void(0)"> <i class="icon-comments"></i>
-					Обговорення
+			<li id="discussions"><a href="javascript:void(0)"> <i
+					class="icon-comments"></i> Обговорення
 			</a></li>
-			<li id="groups"><a href="javascript:void(0)"> <i class="icon-group"></i>
-					Групи
+			<li id="groups"><a href="javascript:void(0)"> <i
+					class="icon-group"></i> Групи
 			</a></li>
-			<li id="network"><a href="javascript:void(0)"> <i class="icon-random"></i>
-					Мережа
+			<li id="network"><a href="javascript:void(0)"> <i
+					class="icon-random"></i> Мережа
 			</a></li>
 		</ul>
 	</div>
@@ -286,43 +286,219 @@
 	<div th:fragment="leftHandPages">
 		<div class="row-fluid" id="dashboard" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-activity"></div>
+				<div id="lhnavigation-page-activity">
+					<div class="activity-widget">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>Нещодавні оновлення</h2>
+								</button>
+							</div>
+						</div>
+						<ul class="vle-list">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row-fluid" id="courses" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-mycourses"></div>
+				<div id="lhnavigation-page-mycourses">
+					<div id="mycourses-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Процес мого навчання <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="contentlibrary-search-form">
+										<label class="aural-text" for="contentlibrary-search-query">Звузити
+											пошук</label> <input type="text" id="contentlibrary-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<!-- -->
+							</div>
+						</div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row-fluid" id="calendar" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-mycalendar"></div>
+				<div id="lhnavigation-page-mycalendar">
+					<div id="mycalendar-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>Мій календар</h2>
+								</button>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<!-- -->
+							</div>
+						</div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row-fluid" id="discussions" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-discussionslibrary"></div>
+				<div id="lhnavigation-page-discussionslibrary">
+					<div id="discussionslibrary-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Обговорення <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="discussionslibrary-search-form">
+										<label class="aural-text"
+											for="discussionslibrary-search-query">Звузити пошук</label> <input
+											type="text" id="discussionslibrary-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<!-- -->
+							</div>
+						</div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row-fluid" id="library" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-contentlibrary"></div>
+				<div id="lhnavigation-page-contentlibrary">
+					<div id="contentlibrary-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Бібліотека <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="contentlibrary-search-form">
+										<label class="aural-text" for="contentlibrary-search-query">Звузити
+											пошук</label> <input type="text" id="contentlibrary-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<!-- -->
+							</div>
+						</div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row-fluid" id="network" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-network"></div>
+				<div id="lhnavigation-page-network">
+					<div id="network-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Мережа <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="network-search-form">
+										<label class="aural-text" for="network-search-query">Звузити
+											пошук</label> <input type="text" id="network-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions clearfix hide">
+								<!-- -->
+							</div>
+						</div>
+						<div id="network-tab-container">
+							<!-- Defines the available tabs (following and follower) -->
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#network-friends"
+									data-toggle="tab" data-type="friends">Друзі</a></li>
+								<li><a href="#network-requests" data-toggle="tab"
+									data-type="requests">Запити</a></li>
+							</ul>
+						</div>
+
+						<!-- Content associated to the tabs -->
+						<div class="tab-content">
+							<div id="network-friends" class="tab-pane active">
+								<ul class="vle-list vle-list-grid">
+									<!-- -->
+									<li>список моїх друзів</li>
+								</ul>
+							</div>
+							<div id="network-requests" class="tab-pane">
+								<ul class="vle-list vle-list-grid">
+									<!-- -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="row-fluid" id="groups" style="display: none;">
 			<div class="span12">
-				<div id="lhnavigation-page-memberships"></div>
+				<div id="lhnavigation-page-memberships">
+					<div id="memberships-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Групи <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="memberships-search-form">
+										<label class="aural-text" for="memberships-search-query">Звузити
+											пошук</label> <input type="text" id="memberships-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions clearfix hide">
+								<!-- -->
+							</div>
+						</div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

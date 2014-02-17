@@ -1,6 +1,8 @@
 package in.kmbs.vlethyme.controllers;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import in.kmbs.vlethyme.dao.User;
 import in.kmbs.vlethyme.service.UserService;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
@@ -73,5 +77,11 @@ public class HomeController {
 	@RequestMapping(value="/calendar")
 	public String showCalendar() {
 		return "calendar";
+	}
+	
+	@RequestMapping(value="/getmessages", method=RequestMethod.GET, produces="application/json")
+	@ResponseBody
+	public Map<String, Object> getMessages(Principal principal){
+		return null;
 	}
 }

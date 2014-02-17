@@ -16,6 +16,6 @@ $(document).on('click', function(ev) {
 	toggleClip($clip);
 });
 
-$(document).on('click', function(ev) {
+$(document).on('click', '.vle-list-options-toggle', function() {
 	
 });
