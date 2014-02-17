@@ -93,7 +93,7 @@
     background: none;
 }
 
-/* Left Hand Navigation */
+/** Left Hand Navigation **/
 
 #lhnavigation-container {
     padding: 5px 10px;
@@ -110,4 +110,67 @@
     #lhnavigation-container.row-fluid .span10 {
         width: 74.4681%;
     }
+}
+
+/** ACTIVITY **/
+
+.activity-widget .activity-entity-thumbnail {
+    height: 35px;
+    margin: 3px 12px 2px 3px;
+    width: 35px;
+}
+
+.activity-widget small {
+    font-size: 12px;
+}
+
+/* Activity preview */
+
+.activity-widget .activity-preview-container,
+.activity-widget .activity-comment-container {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.activity-widget ul.vle-list.vle-list-grid > li {
+    margin-right: 25px;
+    margin-bottom: 0;
+}
+
+/* Tile with multiple items */
+
+.activity-widget ul.vle-list.vle-list-grid > li .activity-multiple {
+    height: 162px;
+    width: 162px;
+    border: none;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+}
+
+.activity-widget ul.vle-list.vle-list-grid > li .activity-multiple div.oae-thumbnail {
+    height: 25px;
+    margin: 3px 4px 15px 8px;
+    width: 25px;
+}
+
+/* Wide tiles */
+
+.activity-widget ul.vle-list.vle-list-grid.activity-wide > li div.vle-thumbnail {
+    width: 535px;
+    height: 250px;
+}
+
+.activity-widget ul.vle-list.vle-list-grid.activity-wide > li div.vle-thumbnail:before {
+    padding-top: 25%;
+}
+
+/* Comments */
+
+.activity-widget .activity-comment-container li.media.activity-level-1 {
+    margin-left: 55px;
+}
+
+.activity-widget .activity-comment-container li.media.activity-level-2 {
+    margin-left: 110px;
 }

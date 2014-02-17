@@ -259,30 +259,73 @@
 
 	<div th:fragment="leftHandNavMenu">
 		<ul class="nav nav-list">
-			<li id="dashboard"><a href="/"> <i class="icon-dashboard"></i>
+			<li id="dashboard"><a href="javascript:void(0)"> <i class="icon-dashboard"></i>
 					Оновлення
 			</a></li>
-			<li id="courses"><a href="/"> <i class="icon-bell"></i>
+			<li id="courses"><a href="javascript:void(0)"> <i class="icon-bell"></i>
 					Навчання
 			</a></li>
-			<li id="calendar"><a href="/"> <i class="icon-calendar"></i>
+			<li id="calendar"><a href="javascript:void(0)"> <i class="icon-calendar"></i>
 					Календар
 			</a></li>
-			<li id="library"><a href="/"> <i class="icon-briefcase"></i>
+			<li id="library"><a href="javascript:void(0)"> <i class="icon-briefcase"></i>
 					Бібліотека
 			</a></li>
-			<li id="discussions"><a href="/"> <i class="icon-comments"></i>
+			<li id="discussions"><a href="javascript:void(0)"> <i class="icon-comments"></i>
 					Обговорення
 			</a></li>
-			<li id="groups"><a href="/"> <i class="icon-group"></i>
+			<li id="groups"><a href="javascript:void(0)"> <i class="icon-group"></i>
 					Групи
 			</a></li>
-			<li id="network"><a href="/"> <i class="icon-random"></i>
+			<li id="network"><a href="javascript:void(0)"> <i class="icon-random"></i>
 					Мережа
 			</a></li>
 		</ul>
 	</div>
 
+	<div th:fragment="leftHandPages">
+		<div class="row-fluid" id="dashboard" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-activity"></div>
+			</div>
+		</div>
+
+		<div class="row-fluid" id="courses" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-mycourses"></div>
+			</div>
+		</div>
+
+		<div class="row-fluid" id="calendar" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-mycalendar"></div>
+			</div>
+		</div>
+
+		<div class="row-fluid" id="discussions" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-discussionslibrary"></div>
+			</div>
+		</div>
+
+		<div class="row-fluid" id="library" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-contentlibrary"></div>
+			</div>
+		</div>
+
+		<div class="row-fluid" id="network" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-network"></div>
+			</div>
+		</div>
+
+		<div class="row-fluid" id="groups" style="display: none;">
+			<div class="span12">
+				<div id="lhnavigation-page-memberships"></div>
+			</div>
+		</div>
+	</div>
 
 
 

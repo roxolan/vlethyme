@@ -15,3 +15,7 @@ $(document).on('click', function(ev) {
 	var $clip = $(ev.target).parents('.clip-content');
 	toggleClip($clip);
 });
+
+$(document).on('click', function(ev) {
+	
+});
