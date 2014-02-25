@@ -174,3 +174,9 @@
 .activity-widget .activity-comment-container li.media.activity-level-2 {
     margin-left: 110px;
 }
+
+
+/* Network widget */
+#network-widget .vle-list-options {
+    border-bottom: none;
+}
