@@ -1,21 +1,10 @@
-/**
- * 
- */
-
 var baseUrl = '/me';
+var $rootel = $('#');
 
-var toggleClip = function($clip) {
-    // Toggle the clip options
-    $('ul', $clip).toggle();
-    // Toggle the caret icons
-    $('i.icon-caret-down, i.icon-caret-up', $clip).toggleClass('icon-caret-down icon-caret-up');
+var setUpNavigation = function() {
+	$(document).on('click', '#lhnavigation-navigation ul li', function(ev) {
+		alert("it clicks!");
+	});
 };
 
-$(document).on('click', function(ev) {
-	var $clip = $(ev.target).parents('.clip-content');
-	toggleClip($clip);
-});
-
-$(document).on('click', '.vle-list-options-toggle', function() {
-	
-});
+setUpNavigation();
