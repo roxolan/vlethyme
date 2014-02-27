@@ -30,7 +30,23 @@ var setUpNavListeners = function(baseUrl) {
 	});
 };
 
+var setUpOptionsListeners = function() {
+	$(document).on('click', '.vle-list-options-toggle', function() {
+		var $listContainer = $(this).parents('.vle-list-container');
+		var $listOptionActions = $('.vle-list-options-actions', $listContainer);
+		
+        if ($listOptionActions.is(':visible')) {
+            $listOptionActions.slideUp(200);
+        } else {
+            $listOptionActions.slideDown(200);
+        }
+        // Toggle the caret icon in the page title
+        $(this).find('i').toggleClass('icon-caret-down icon-caret-up');
+	});
+};
+
 defaultPage(baseUrl);
 setUpNavListeners(baseUrl);
+setUpOptionsListeners();
 
 
