@@ -17,3 +17,25 @@ $(document).on('click', function(ev) {
 $(document).on('click', '.vle-list-options-toggle', function() {
 	
 });
+
+function login() {
+	
+	var username = $('#topnavigation-signin-username').val();
+	var password = $('#topnavigation-signin-password').val();
+	
+	    	 var newUrl = 'j_spring_security_check';
+	    	 $.post(newUrl,{j_username:username,j_password:password})
+	    	 .success(
+	    	  function(xml, status, jqxhr)
+	    	  {  
+	    		  var loginRedirect = jqxhr.getResponseHeader("LoginRedirect"); 
+				  if(loginRedirect == 1) {
+					  alert("Invalid credentials");
+				  }
+				  else {
+	    		  window.location.assign('me'); 
+			      }
+			 })
+	    	  .error(function(){
+	    	});
+}

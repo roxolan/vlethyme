@@ -1,13 +1,15 @@
 package in.kmbs.vlethyme.controllers;
 
+import in.kmbs.vlethyme.dao.User;
+import in.kmbs.vlethyme.service.UserService;
+
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
-import in.kmbs.vlethyme.dao.User;
-import in.kmbs.vlethyme.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-		
+
 	private UserService userService;
 
 	@Autowired
@@ -24,64 +26,70 @@ public class HomeController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value="/")
+	@RequestMapping(value = "/")
 	public String showIndex() {
-		return "index";
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			return "redirect:/me";
+		} else {
+			return "index";
+		}
 	}
-	
-	@RequestMapping(value="/me")
+
+	@RequestMapping(value = "/me")
 	public String showMe() {
 		return "me";
 	}
-	
-	@RequestMapping(value="/content")
+
+	@RequestMapping(value = "/content")
 	public String showContent() {
 		return "content";
 	}
-	
-	@RequestMapping(value="/group")
+
+	@RequestMapping(value = "/group")
 	public String showGroup(Model model) {
-		
+
 		List<User> users = userService.getAllUsers();
-		
+
 		model.addAttribute("users", users);
-		
+
 		return "group";
 	}
-	
-	@RequestMapping(value="/course")
+
+	@RequestMapping(value = "/course")
 	public String showCourse() {
 		return "course";
 	}
-	
-	@RequestMapping(value="/program")
+
+	@RequestMapping(value = "/program")
 	public String showProgram() {
 		return "program";
 	}
-	
-	@RequestMapping(value="/search")
+
+	@RequestMapping(value = "/search")
 	public String showSearch() {
 		return "search";
 	}
-	
-	@RequestMapping(value="/discussion")
+
+	@RequestMapping(value = "/discussion")
 	public String showDiscussion() {
 		return "discussion";
 	}
-	
-	@RequestMapping(value="/user")
+
+	@RequestMapping(value = "/user")
 	public String showUser() {
 		return "user";
 	}
-	
-	@RequestMapping(value="/calendar")
+
+	@RequestMapping(value = "/calendar")
 	public String showCalendar() {
 		return "calendar";
 	}
-	
-	@RequestMapping(value="/getmessages", method=RequestMethod.GET, produces="application/json")
+
+	@RequestMapping(value = "/getmessages", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public Map<String, Object> getMessages(Principal principal){
+	public Map<String, Object> getMessages(Principal principal) {
 		return null;
 	}
 }
