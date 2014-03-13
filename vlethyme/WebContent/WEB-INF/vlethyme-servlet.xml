@@ -20,19 +20,22 @@
 	</bean>
 
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-		<property name="templateResolver" ref="templateResolver" />				
+		<property name="templateResolver" ref="templateResolver" />
 	</bean>
 
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>
-	
+
 	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang"></property>
+		</bean>
 		<mvc:interceptor>
-        	<mvc:mapping path="/"/>
-        	<bean class="in.kmbs.vlethyme.interceptor.LoginRedirectInterceptor" />
-    	</mvc:interceptor>
+			<mvc:mapping path="/" />
+			<bean class="in.kmbs.vlethyme.interceptor.LoginRedirectInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 
