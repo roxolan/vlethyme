@@ -220,7 +220,7 @@
 			<button type="button" class="trigger-upload">
 				<div>
 					<i class="icon-cloud-upload pull-left"></i>
-					<h1>Завантажити</h1>
+					<h1 th:text="#{msg.label.clip.download.downloadbutton}">Завантажити</h1>
 				</div>
 			</button>
 		</div>
@@ -235,23 +235,23 @@
 			<button type="button">
 				<div>
 					<i class="icon-plus-sign pull-left"></i>
-					<h1>Додати</h1>
+					<h1 th:text="#{msg.label.clip.rightside.adddbutton}">Додати</h1>
 					<i class="icon-caret-down"></i>
 				</div>
 			</button>
 			<div>
 				<ul>
 					<li><button class="trigger-creategroup">
-							<i class="icon-group"></i>Групу
+							<i class="icon-group"></i><div th:text="#{msg.label.clip.rightside.creategroup}">Групу</div>
 						</button></li>
 					<li><button class="trigger-createlink">
-							<i class="icon-link"></i>Посилання
+							<i class="icon-link"></i><div th:text="#{msg.label.clip.rightside.createlink}">Посилання</div>
 						</button></li>
 					<li><button class="trigger-createcollabdoc">
-							<i class="icon-edit"></i>Документ
+							<i class="icon-edit"></i><div th:text="#{msg.label.clip.rightside.createdocument}">Документ</div>
 						</button></li>
 					<li><button class="trigger-creatediscussion">
-							<i class="icon-comments"></i>Дискусію
+							<i class="icon-comments"></i><div th:text="#{msg.label.clip.rightside.creatediscussion}">Дискусію</div>
 						</button></li>
 				</ul>
 			</div>
@@ -262,24 +262,25 @@
 	<div th:fragment="leftHandNavMenu">
 		<ul class="nav nav-list">
 			<li id="dashboard"><a href="javascript:void(0)"><i
-					class="icon-dashboard"></i> Оновлення </a></li>
+					class="icon-dashboard"></i><span th:text="#{msg.label.lefthandmenu.item.dashboard}">Оновлення</span>
+			</a></li>
 			<li id="courses"><a href="javascript:void(0)"> <i
-					class="icon-bell"></i> Навчання
+					class="icon-bell"></i><span th:text="#{msg.label.lefthandmenu.item.courses}">Навчання</span>
 			</a></li>
 			<li id="calendar"><a href="javascript:void(0)"> <i
-					class="icon-calendar"></i> Календар
+					class="icon-calendar"></i><span th:text="#{msg.label.lefthandmenu.item.calendar}">Календар</span>
 			</a></li>
 			<li id="content"><a href="javascript:void(0)"> <i
-					class="icon-briefcase"></i> Бібліотека
+					class="icon-briefcase"></i><span th:text="#{msg.label.lefthandmenu.item.content}">Бібліотека</span>
 			</a></li>
 			<li id="discussions"><a href="javascript:void(0)"> <i
-					class="icon-comments"></i> Обговорення
+					class="icon-comments"></i><span th:text="#{msg.label.lefthandmenu.item.discussions}">Обговорення</span>
 			</a></li>
 			<li id="groups"><a href="javascript:void(0)"> <i
-					class="icon-group"></i> Групи
+					class="icon-group"></i><span th:text="#{msg.label.lefthandmenu.item.groups}">Групи</span>
 			</a></li>
 			<li id="network"><a href="javascript:void(0)"> <i
-					class="icon-random"></i> Мережа
+					class="icon-random"></i><span th:text="#{msg.label.lefthandmenu.item.network}">Мережа</span>
 			</a></li>
 		</ul>
 	</div>
