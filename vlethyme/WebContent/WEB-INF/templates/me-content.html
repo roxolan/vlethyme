@@ -1,0 +1,33 @@
+<div class="row-fluid" id="content">
+			<div class="span12">
+				<div id="lhnavigation-page-content">
+					<div id="content-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Бібліотека <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="content-search-form">
+										<label class="aural-text" for="content-search-query">Звузити
+											пошук</label> <input type="text" id="content-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<div id="content-list-options-actions-template"
+									th:include="layout :: contentListOptionsActions"></div>
+							</div>
+						</div>
+						<div id="contentlibrary-noresults-template"
+							th:include="layout :: contentNoResults"></div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>

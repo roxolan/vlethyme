@@ -1,0 +1,33 @@
+<div class="row-fluid" id="courses">
+			<div class="span12">
+				<div id="lhnavigation-page-courses">
+					<div id="courses-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Процес мого навчання <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="courses-search-form">
+										<label class="aural-text" for="courses-search-query">Звузити
+											пошук</label> <input type="text" id="courses-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<div id="mycourses-list-options-actions-template"
+									th:include="layout :: coursesListOptionsActions"></div>
+							</div>
+						</div>
+						<div id="courses-noresults-template"
+							th:include="layout :: coursesNoResults"></div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>

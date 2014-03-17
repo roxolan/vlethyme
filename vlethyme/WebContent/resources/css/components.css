@@ -710,3 +710,11 @@ ul.vle-list:not(.vle-list-grid) .vle-list-actions ul > li {
     display: inline;
     margin-right: 10px;
 }
+
+#creategroup-modal #creategroup-form {
+    margin-bottom: 0;
+}
+
+#creategroup-modal #creategroup-name {
+    width: 100%;
+}

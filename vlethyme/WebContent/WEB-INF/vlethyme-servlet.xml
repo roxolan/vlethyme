@@ -26,6 +26,8 @@
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
+		<property name="cacheLimit" value="0" />
+		<property name="cache" value="false"/>
 	</bean>
 
 	<mvc:interceptors>

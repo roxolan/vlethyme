@@ -1,10 +1,8 @@
 package in.kmbs.vlethyme.controllers;
 
-import in.kmbs.vlethyme.dao.User;
 import in.kmbs.vlethyme.service.UserService;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +39,36 @@ public class HomeController {
 	public String showMe() {
 		return "me";
 	}
+	
+	@RequestMapping(value = "/me/dashboard")
+	public String showMeDashboard() {
+		return "me-dashboard";
+	}
+	
+	@RequestMapping(value = "/me/courses")
+	public String showMeCourses() {
+		return "me-courses";
+	}
+	
+	@RequestMapping(value = "/me/groups")
+	public String showMeGroups() {
+		return "me-groups";
+	}
+	
+	@RequestMapping(value = "/me/content")
+	public String showMeContent() {
+		return "me-content";
+	}
+	
+	@RequestMapping(value = "/me/discussions")
+	public String showMeDiscussions() {
+		return "me-discussions";
+	}
+	
+	@RequestMapping(value = "/me/network")
+	public String showMeNetwork() {
+		return "me-network";
+	}
 
 	@RequestMapping(value = "/content")
 	public String showContent() {
@@ -50,9 +78,9 @@ public class HomeController {
 	@RequestMapping(value = "/group")
 	public String showGroup(Model model) {
 
-		List<User> users = userService.getAllUsers();
+		//List<User> users = userService.getAllUsers();
 
-		model.addAttribute("users", users);
+		model.addAttribute("users", "asd");
 
 		return "group";
 	}

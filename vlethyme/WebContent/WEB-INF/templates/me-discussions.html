@@ -1,0 +1,33 @@
+<div class="row-fluid" id="discussions">
+			<div class="span12">
+				<div id="lhnavigation-page-discussions">
+					<div id="discussions-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Обговорення <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="discussions-search-form">
+										<label class="aural-text" for="discussions-search-query">Звузити
+											пошук</label> <input type="text" id="discussions-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions hide">
+								<div id="discussions-list-options-actions-template"
+									th:include="layout :: discussionsListOptionsActions"></div>
+							</div>
+						</div>
+						<div id="discussionslibrary-noresults-template"
+							th:include="layout :: discussionsNoResults"></div>
+						<ul class="vle-list vle-list-grid">
+							<!-- -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>

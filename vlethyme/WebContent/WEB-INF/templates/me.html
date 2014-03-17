@@ -36,7 +36,6 @@
 			<div id="lhnavigation-container" class="row-fluid">
 				<div class="span2">
 					<div id="lhnavigation-navigation" th:include="layout :: leftHandNavMenu">
-						<!-- -->
 					</div>
 				</div>
 				<div id="lhnavigation-page" class="span10" th:include="layout :: leftHandPages">
@@ -50,7 +49,11 @@
 	<div id="footer">
 		<!-- -->
 	</div>
-
+	
+	<!-- JAVASCRIPT -->
+	<script th:attr="data-main=@{/static/js/vle/api/vle.bootstrap.js},data-loadmodule=@{/static/js/me.js}" th:src="@{/static/js/vendor/requirejs/require.js}"></script>
+	
+	
 </body>
 
 </html>
