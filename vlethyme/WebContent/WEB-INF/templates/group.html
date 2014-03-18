@@ -11,19 +11,157 @@
 <div id="topnavigation">
 	<div id="topnavigation_container" th:include="layout :: topNavContainerLoggedIn"></div> 
 </div>
-<h1 id="topnavigation_target" class="aural-text">Content begins here</h1>
+<h1 id="topnavigation_target" class="vle-aural-text">Content begins here</h1>
+<!-- BODY -->
+        <div class="vle-main-content">
 
+            <!-- CLIPS -->
+            <div class="vle-clip-container">
+                <div id="group-clip-container" class="vle-clip-container-left"><!-- --></div>
+                <div id="group-clip-template">
+                    <div class="vle-clip">
+                        <div class="vle-clip-fold">
+                            <div class="vle-clip-fold-inner"></div>
+                            <div class="vle-clip-fold-outer"></div>
+                        </div>
+                        <div class="vle-clip-content">
+                            <button type="button">
+                                 <div class="vle-thumbnail icon-vle- icon-vle-group">
+							              <i class="icon-vle-loggedin"></i>
+							     </div>
+                                <div>
+                                    <div>
+                                        <h1 class="vle-threedots" ng-bind="group.name"></h1>
+                                        <i class="icon-caret-down"></i>
+                                        <small>Group</small>
+                                    </div>
+                                </div>
+                            </button>
+                            <div>
+                                <ul>
+                                    <li><button class="vle-trigger-changepic"><i class="icon-camera"></i>Change picture</button></li>
+                                    <li><button class="group-trigger-manageaccess"><i class="icon-user"></i>Manage access</button></li>
+                                    <li><button class="group-trigger-editgroup"><i class="icon-pencil"></i>Edit details</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div id="group-join-actions" class="vle-clip-container-right hide">
+                    <div class="vle-clip vle-clip-secondary vle-clip-flipped">
+                        <div class="vle-clip-fold">
+                            <div class="vle-clip-fold-inner"></div>
+                            <div class="vle-clip-fold-outer"></div>
+                        </div>
+                        <div class="vle-clip-content">
+                            <button type="button" class="group-join">
+                                <div>
+                                    <i class="icon-pushpin pull-left"></i>
+                                    <h1>Join Group</h1>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-<div th:text="${users}"></div>
+                <div id="group-member-actions" class="vle-clip-container-right">
+                    <div class="vle-clip vle-clip-flipped vle-dnd-upload">
+                        <div class="vle-clip-fold">
+                            <div class="vle-clip-fold-inner"></div>
+                            <div class="vle-clip-fold-outer"></div>
+                        </div>
+                        <div class="vle-clip-content">
+                            <button type="button" class="vle-trigger-upload">
+                                <div>
+                                    <i class="icon-cloud-upload pull-left"></i>
+                                    <h1>Upload</h1>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
 
-<script type="text/javascript">
+                    <div class="vle-clip vle-clip-secondary vle-clip-flipped">
+                        <div class="vle-clip-fold">
+                            <div class="vle-clip-fold-inner"></div>
+                            <div class="vle-clip-fold-outer"></div>
+                        </div>
+                        <div class="vle-clip-content">
+                            <button>
+                                <div>
+                                    <i class="icon-plus-sign pull-left"></i>
+                                    <h1>Create</h1>
+                                    <i class="icon-caret-down"></i>
+                                </div>
+                            </button>
+                            <div>
+                                <ul>
+                                    <li><button class="vle-trigger-createlink"><i class="icon-link"></i>Link</button></li>
+                                    <li><button class="vle-trigger-createcollabdoc"><i class="icon-edit"></i>Document</button></li>
+                                    <li><button class="vle-trigger-creatediscussion"><i class="icon-comments"></i>Discussion</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	$(document).ready(function(){
-		alert("Group");
-	});
+            <!-- JOIN GROUP VIEW -->
+            <div id="group-join-view" class="hide">
+                <div id="group-join-container">
+                    <div id="group-join" class="text-center">
+                        <div>You need to join this group to be able to see its content.</div>
+                        <button type="button" class="btn group-join">
+                            <i class="icon-pushpin pull-left"></i> Join group
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- GROUP CONTENT -->
+            <div id="lhnavigation">
+            	<div id="lhnavigation-container" class="row-fluid">
+				<div class="span2">
+					<div id="lhnavigation-navigation">
+						<ul class="nav nav-list">
+            				<li data-id="activity">
+	                			<a ng-href="#/activity/{{group.id}}">
+		                    		<i class="icon-dashboard"></i>
+		                    		Recent activity
+	                			</a>
+            				</li>
+				            <li data-id="library">
+				                <a ng-href="#/library/{{group.id}}">
+				                    <i class="icon-briefcase"></i>
+				                    Library
+				                </a>
+				            </li>
+				            <li data-id="discussions" class="">
+				                <a ng-href="#/discussions/{{group.id}}">
+				                    <i class="icon-comments"></i>
+				                    Discussions
+				                </a>
+				            </li>
+				            <li data-id="members" class="active">
+				                <a ng-href="#/members/{{group.id}}">
+				                    <i class="icon-user"></i>
+				                    Members
+				                </a>
+				            </li>
+    					</ul>
+					</div>
+				</div>
+				<div id="lhnavigation-page" class="span10" th:include="layout :: leftHandPages">
+					<div ng-view=""></div>
+				</div>
+			</div>
+            </div>
+        </div>
 
-</script>
+        <!-- FOOTER -->
+        <div data-widget="footer"><!-- --></div>
 
-</body>
+        <!-- JAVASCRIPT -->
+        <script th:attr="data-main=@{/static/js/vle/api/vle.bootstrap.js},data-loadmodule=@{/static/js/group.js}" th:src="@{/static/js/vendor/requirejs/require.js}"></script>
+
+    </body>
 </html>

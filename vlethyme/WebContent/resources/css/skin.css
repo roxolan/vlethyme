@@ -2,11 +2,11 @@ body {
   background-color: #eceae5;
 }
 
-.institutional-logo {
+.vle-institutional-logo {
   background-image: url('../img/mykmbs-logo.png');
 }
 
-.main-content.branding-container {
+.vle-main-content.vle-branding-container {
   background-color: #138fd2;
   background-image: url('../img/index.png') #0074a7;
   background-image: url('../img/index.png'), -moz-linear-gradient(top, #0074a7 0%, #25a9fd 100%);
@@ -21,7 +21,7 @@ input,
 select,
 textarea,
 .btn > i,
-a.plain-link,
+a.vle-plain-link,
 .popover-content,
 .popover-content button:not(.btn),
 h1 [class^="icon-"],
@@ -46,7 +46,7 @@ a,
 .btn-link {
   color: #0088cc;
 }
-.btn-link.plain-link {
+.btn-link.vle-plain-link {
   color: #333333;
 }
 a:hover,
@@ -439,17 +439,17 @@ div.vle-thumbnail {
   border-color: #e3e2db;
 }
 
-.large-options-container .large-options {
+.vle-large-options-container .vle-large-options {
   background-color: #ffffff;
 }
-.large-options-container label .large-options.checked {
+.vle-large-options-container label .vle-large-options.checked {
   border-color: #9eb7e6;
   background-color: #dbedfe;
 }
-.large-options-container .large-options.checked + i {
+.vle-large-options-container .vle-large-options.checked + i {
   background-color: #9eb7e6;
 }
-.large-options-container .large-options.checked + i:before {
+.vle-large-options-container .vle-large-options.checked + i:before {
   color: #ffffff;
 }
 
@@ -468,73 +468,73 @@ div.vle-thumbnail {
   border-color: #eeedeb;
 }
 
-.panel-primary {
+.vle-panel-primary {
   color: #ffffff;
   background: transparent;
 }
-.panel-primary,
-.panel-primary:before,
-.panel-primary:after {
+.vle-panel-primary,
+.vle-panel-primary:before,
+.vle-panel-primary:after {
   border-color: transparent;
 }
-.panel-primary h1,
-.panel-primary h2,
-.panel-primary h3,
-.panel-primary h4,
-.panel-primary h5,
-.panel-primary h6,
-.panel-primary i,
-.panel-primary i:hover {
+.vle-panel-primary h1,
+.vle-panel-primary h2,
+.vle-panel-primary h3,
+.vle-panel-primary h4,
+.vle-panel-primary h5,
+.vle-panel-primary h6,
+.vle-panel-primary i,
+.vle-panel-primary i:hover {
   color: #ffffff;
 }
 
-.panel-secondary {
+.vle-panel-secondary {
   color: #ffffff;
   background: transparent;
 }
-.panel-secondary,
-.panel-secondary:before,
-.panel-secondary:after {
+.vle-panel-secondary,
+.vle-panel-secondary:before,
+.vle-panel-secondary:after {
   border-color: transparent;
 }
-.panel-secondary h1,
-.panel-secondary h2,
-.panel-secondary h3,
-.panel-secondary h4,
-.panel-secondary h5,
-.panel-secondary h6,
-.panel-secondary i,
-.panel-secondary i:hover {
+.vle-panel-secondary h1,
+.vle-panel-secondary h2,
+.vle-panel-secondary h3,
+.vle-panel-secondary h4,
+.vle-panel-secondary h5,
+.vle-panel-secondary h6,
+.vle-panel-secondary i,
+.vle-panel-secondary i:hover {
   color: #ffffff;
 }
 
-.panel-tertiary {
+.vle-panel-tertiary {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.3);
 }
-.panel-tertiary,
-.panel-tertiary:before,
-.panel-tertiary:after {
+.vle-panel-tertiary,
+.vle-panel-tertiary:before,
+.vle-panel-tertiary:after {
   border-color: rgba(255, 255, 255, 0.3);
 }
-.panel-tertiary h1,
-.panel-tertiary h2,
-.panel-tertiary h3,
-.panel-tertiary h4,
-.panel-tertiary h5,
-.panel-tertiary h6,
-.panel-tertiary i,
-.panel-tertiary i:hover {
+.vle-panel-tertiary h1,
+.vle-panel-tertiary h2,
+.vle-panel-tertiary h3,
+.vle-panel-tertiary h4,
+.vle-panel-tertiary h5,
+.vle-panel-tertiary h6,
+.vle-panel-tertiary i,
+.vle-panel-tertiary i:hover {
   color: #ffffff;
 }
 
-.clip .clip-fold .clip-fold-outer {
+.vle-clip .vle-clip-fold .vle-clip-fold-outer {
   background-color: #545454;
 }
-.clip .clip-fold .clip-fold-inner {
+.vle-clip .vle-clip-fold .vle-clip-fold-inner {
   background-color: #000000;
 }
-.clip .clip-content {
+.vle-clip .vle-clip-content {
   background-color: #2a2a2a;
   background-image: linear-gradient(to bottom, #545454 0%, #545454 10%, #000000 100%);
   background-image: -o-linear-gradient(top, #545454 0%, #545454 10%, #000000 100%);
@@ -542,32 +542,32 @@ div.vle-thumbnail {
   background-image: -webkit-linear-gradient(top, #545454 0%, #545454 10%, #000000 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff545454, endColorstr=#ff000000);
 }
-.clip .clip-content,
-.clip .clip-content > button,
-.clip .clip-content ul li button,
-.clip .clip-content i {
+.vle-clip .vle-clip-content,
+.vle-clip .vle-clip-content > button,
+.vle-clip .vle-clip-content ul li button,
+.vle-clip .vle-clip-content i {
   color: #dbdbdb;
 }
-.clip button small {
+.vle-clip button small {
   color: #999999;
 }
-.clip button:hover,
-.clip button:focus,
-.clip button:hover i,
-.clip button:focus i {
+.vle-clip button:hover,
+.vle-clip button:focus,
+.vle-clip button:hover i,
+.vle-clip button:focus i {
   color: #ffffff;
 }
-.clip ul li button:hover {
+.vle-clip ul li button:hover {
   background-color: #000000;
 }
 
-.clip.clip-secondary .clip-fold .clip-fold-outer {
+.vle-clip.vle-clip-secondary .vle-clip-fold .vle-clip-fold-outer {
   background-color: #24a7dd;
 }
-.clip.clip-secondary .clip-fold .clip-fold-inner {
+.vle-clip.vle-clip-secondary .vle-clip-fold .vle-clip-fold-inner {
   background-color: #0175a9;
 }
-.clip.clip-secondary .clip-content {
+.vle-clip.vle-clip-secondary .vle-clip-content {
   background-color: #138ec3;
   background-image: linear-gradient(to bottom, #24a7dd 0%, #24a7dd 10%, #0175a9 100%);
   background-image: -o-linear-gradient(top, #24a7dd 0%, #24a7dd 10%, #0175a9 100%);
@@ -575,20 +575,20 @@ div.vle-thumbnail {
   background-image: -webkit-linear-gradient(top, #24a7dd 0%, #24a7dd 10%, #0175a9 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff24a7dd, endColorstr=#ff0175a9);
 }
-.clip.clip-secondary .clip-content,
-.clip.clip-secondary .clip-content button,
-.clip.clip-secondary .clip-content i {
+.vle-clip.vle-clip-secondary .vle-clip-content,
+.vle-clip.vle-clip-secondary .vle-clip-content button,
+.vle-clip.vle-clip-secondary .vle-clip-content i {
   color: #f5f5f5;
 }
-.clip.clip-secondary button small {
+.vle-clip.vle-clip-secondary button small {
   color: #dbdbdb;
 }
-.clip.clip-secondary button:hover,
-.clip.clip-secondary button:focus,
-.clip.clip-secondary button:hover i,
-.clip.clip-secondary button:focus i {
+.vle-clip.vle-clip-secondary button:hover,
+.vle-clip.vle-clip-secondary button:focus,
+.vle-clip.vle-clip-secondary button:hover i,
+.vle-clip.vle-clip-secondary button:focus i {
   color: #ffffff;
 }
-.clip.clip-secondary ul li button:hover {
+.vle-clip.vle-clip-secondary ul li button:hover {
   background-color: #0175a9;
 }

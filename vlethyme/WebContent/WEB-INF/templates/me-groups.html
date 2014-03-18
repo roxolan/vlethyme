@@ -11,7 +11,7 @@
 								</button>
 								<div class="pull-right">
 									<form class="form-search" id="groups-search-form">
-										<label class="aural-text" for="groups-search-query">Звузити
+										<label class="vle-aural-text" for="groups-search-query">Звузити
 											пошук</label> <input type="text" id="groups-search-query"
 											class="search-query" placeholder="Звузити пошук" />
 									</form>
@@ -37,16 +37,16 @@
 					    		<div class="vle-list-grid-item">
 					               <div class="vle-tile">
     									<div class="vle-thumbnail vle-thumbnail-large icon-vle- icon-vle-group">
-											<a href="{{'/group/'+group.id}}" title="{{group.name}}">   </a>    
+											<a ng-href="/group#/members/{{group.id}}" title="{{group.name}}">   </a>    
 										</div>
 										<div class="vle-tile-metadata">
 											<i class="icon-vle-public pull-right"></i>
-											<h3 class="vle-threedots"><a href="{{'/group/'+group.id}}" title="{{group.name}}" ng-bind="group.name"></a></h3>
+											<h3 class="vle-threedots"><a ng-href="/group#/members/{{group.id}}"  title="{{group.name}}" ng-bind="group.name"></a></h3>
 											<small class="vle-threedots">Group</small>
 										</div>
 									</div>
 					                <input type="checkbox" class="pull-left" data-resourcetype="group" data-resourcesubtype=""/>
-					                <label class="cle-aural-text" ng-bind="group.name"></label>
+					                <label class="vle-aural-text" ng-bind="group.name"></label>
 								</div>
 					        </li>
 						</ul>
@@ -54,10 +54,12 @@
 				</div>
 			</div>
 		</div>
-		
-<!-- MODAL -->
-<div id="creategroup-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="creategroup-modal-title" aria-hidden="true">
-    <div class="modal-header">
+
+
+<script type="text/ng-template" class="template" id="CreateGroupTemplate">
+<!-- Modal -->
+<div class="modal-content">
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#215;</button>
         <h3 id="creategroup-modal-title">Create group</h3>
     </div>
@@ -66,15 +68,15 @@
             <div class="control-group">
                 <label for="creategroup-name"><h4>Group name</h4></label>
                 <div class="controls">
-                    <input type="text" id="creategroup-name" class="required maxlength-short" placeholder="What do you want to call your group?"/>
+                    <input type="text" id="creategroup-name" class="required maxlength-short" placeholder="What do you want to call your group?" ng-model="group.name" />
                 </div>
             </div>
             <div id="creategroup-visibility-container">
             	<h4>Visibility</h4>
             	<div class="large-options-container row-fluid">
 			        <label for="vle-visibility-private" class="span4 text-center">
-			            <div class="large-options well pull-left text-center">
-			                <input type="radio" id="vle-visibility-private" value="private" name="vle-visibility-group" class="pull-left" tabindex="0"/>
+			            <div class="large-options well pull-left text-center"  ng-class="{checked: (group.visibility == 1)}">
+			                <input type="radio" id="vle-visibility-private" value="private" name="vle-visibility-group" class="pull-left" tabindex="0" ng-click="changeVisibility(1)" />
 			                <i class="icon-vle-private large text-center"></i>
 			                <span>Participants only</span>
 			            </div>
@@ -82,8 +84,8 @@
 			            <small>The group will be private and only visible to its members</small>
 			        </label>
 			        <label for="vle-visibility-loggedin" class="span4 text-center">
-			            <div class="large-options well pull-left text-center">
-			                <input type="radio" id="vle-visibility-loggedin" value="loggedin" name="vle-visibility-group" class="pull-left" tabindex="0"/>
+			            <div class="large-options well pull-left text-center" ng-class="{checked: (group.visibility == 2)}" >
+			                <input type="radio" id="vle-visibility-loggedin" value="loggedin" name="vle-visibility-group" class="pull-left" tabindex="0" ng-click="changeVisibility(2)"/>
 			                <i class="icon-vle-loggedin large text-center"></i>
 			                <span>Open Academic Environment</span>
 			            </div>
@@ -91,8 +93,8 @@
 			            <small>The group can be found and seen by everyone in Open Academic Environment</small>
 			        </label>
 			        <label for="vle-visibility-public" class="span4 text-center">
-			            <div class="large-options well pull-left text-center checked">
-			                <input type="radio" id="vle-visibility-public" value="public" name="vle-visibility-group" class="pull-left" checked="checked" tabindex="0"/>
+			            <div class="large-options well pull-left text-center" ng-class="{checked: (group.visibility == 3)}">
+			                <input type="radio" id="vle-visibility-public" value="public" name="vle-visibility-group" class="pull-left" checked="checked" tabindex="0" ng-click="changeVisibility(3)"/>
 			                <i class="icon-vle-public large text-center"></i>
 			                <span>Public</span>
 			            </div>
@@ -104,7 +106,13 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary pull-right">Create Group</button>
+            <button type="submit" class="btn btn-primary pull-right" ng-click="createGroup()">Create Group</button>
         </div>
     </form>
+    </div>
+
+</script>		
+<!-- MODAL -->
+<div id="creategroup-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="creategroup-modal-title" aria-hidden="true" >
+    
 </div>

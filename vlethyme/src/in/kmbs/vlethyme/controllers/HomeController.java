@@ -75,13 +75,28 @@ public class HomeController {
 		return "content";
 	}
 
+	@RequestMapping(value = "/group/activity")
+	public String showGroupActivity() {
+		return "group-activity";
+	}
+	
+	@RequestMapping(value = "/group/library")
+	public String showGroupLibrary() {
+		return "group-library";
+	}
+	
+	@RequestMapping(value = "/group/discussions")
+	public String showGroupDiscussions() {
+		return "group-discussions";
+	}
+	
+	@RequestMapping(value = "/group/members")
+	public String showGroupMembers() {
+		return "group-members";
+	}
+	
 	@RequestMapping(value = "/group")
 	public String showGroup(Model model) {
-
-		//List<User> users = userService.getAllUsers();
-
-		model.addAttribute("users", "asd");
-
 		return "group";
 	}
 

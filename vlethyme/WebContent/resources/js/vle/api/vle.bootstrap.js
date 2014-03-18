@@ -8,12 +8,14 @@ requirejs.config({
         'bootstrap': 'js/vendor/bootstrap.min',
         'angular': 'js/vendor/angular.min',
         'angular-route': 'js/vendor/angular-route.min',
+        'ng-bootstrap': 'js/vendor/ui-bootstrap-tpls-0.10.0.min',
         'domReady': 'js/vendor/domReady',
         
 
 
         // VLE API modules
-        'vle.core': 'js/vle/api/vle.core'
+        'vle.core': 'js/vle/api/vle.core',
+        'vle.group': 'js/vle/api/vle.group'
     },
     'priority': ['jquery'],
     // angular does not support AMD out of the box, put it in a shim
@@ -22,6 +24,9 @@ requirejs.config({
     		exports: 'angular'
     	},
     	'angular-route': {
+    		deps: ['angular']
+    	},
+    	'ng-bootstrap': {
     		deps: ['angular']
     	}
     },

@@ -12,21 +12,21 @@
 		<div id="topnavigation_container"
 			th:include="layout :: topNavContainerLoggedIn"></div>
 	</div>
-	<h1 id="topnavigation_target" class="aural-text">Content begins
+	<h1 id="topnavigation_target" class="vle-aural-text">Content begins
 		here</h1>
 
 	<!-- BODY -->
-	<div class="main-content">
+	<div class="vle-main-content">
 
 		<!-- CLIPS -->
-		<div class="clip-container">
-			<div id="me-clip-container" class="clip-container-left">
+		<div class="vle-clip-container">
+			<div id="me-clip-container" class="vle-clip-container-left">
 				<div id="me-clip-template" th:include="layout :: meClipTemplate"></div>
 			</div>
-			<div id="right-second-clips-container" class="clip-container-right">
-				<div class="clip clip-flipped vle-dnd-upload"
+			<div id="right-second-clips-container" class="vle-clip-container-right">
+				<div class="vle-clip vle-clip-flipped vle-dnd-upload"
 					th:include="layout :: downloadClip"></div>
-				<div class="clip clip-secondary clip-flipped"
+				<div class="vle-clip vle-clip-secondary vle-clip-flipped"
 					th:include="layout :: rightSideClip"></div>
 			</div>
 		</div>

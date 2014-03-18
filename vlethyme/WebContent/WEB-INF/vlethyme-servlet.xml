@@ -19,8 +19,13 @@
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>
 
+	<bean id="cacheManager" class="org.thymeleaf.cache.StandardCacheManager">
+		<property name="templateCacheMaxSize" value="0" />
+	</bean>
+	
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
+		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">

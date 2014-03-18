@@ -1,0 +1,240 @@
+<div class="row-fluid" data-id="members">
+	<div class="span12">
+		<div id="lhnavigation-page-members">
+			<div id="members-widget">
+				<div class="vle-list-options">
+					<div>
+						<button class="btn vle-list-options-toggle">
+							<h2>
+								Members <i class="icon-caret-down"></i>
+							</h2>
+						</button>
+						<div class="pull-right">
+							<form class="form-search" id="members-search-form">
+								<label class="vle-aural-text" for="members-search-query">Narrow
+									by keyword</label> <input type="text" id="members-search-query"
+									class="search-query" placeholder="Narrow by keyword" />
+							</form>
+						</div>
+					</div>
+					<div class="vle-list-options-actions clearfix hide">
+						<div class="btn-group pull-right">
+							<button class="btn" data-type="vle-list-compact">
+								<i class="icon-list"></i> <span class="vle-aural-text">List
+									view</span>
+							</button>
+							<button class="btn" data-type="vle-list-details">
+								<i class="icon-th-list"></i> <span class="vle-aural-text">Expanded
+									list view</span>
+							</button>
+							<button class="btn active" data-type="vle-list-grid">
+								<i class="icon-th-large"></i> <span class="vle-aural-text">Grid
+									view</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<ul class="vle-list vle-list-grid" aria-live="assertive">
+					<li class="vle-list-actions vle-list-actions-multiple">
+						<div class="vle-thumbnail vle-thumbnail-large icon-vle-user"></div>
+						<ul>
+							<li>
+								<button type="button" class="btn group-trigger-manageaccess-add" ng-click="addMembers()">
+									<i class="icon-plus-sign pull-left"></i>Add members
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn group-trigger-manageaccess">
+									<i class="icon-lock pull-left"></i>Manage access
+								</button>
+							</li>
+						</ul>
+					</li>
+					<li>
+
+						<div class="vle-list-grid-item">
+							<div class="vle-tile">
+
+
+								<div
+									class="vle-thumbnail vle-thumbnail-large icon-vle- icon-vle-user"
+									data-id="u:oae:xJgTBdtQri">
+									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+								</div>
+
+								<div class="vle-tile-metadata">
+									<h3 class="vle-threedots">
+										<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal">Abhishek
+											Agarwal</a>
+									</h3>
+									<small class="vle-threedots">Manager</small>
+
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="vle-list-details-item">
+							<div class="vle-listitem">
+
+
+
+								<div class="vle-thumbnail icon-vle- icon-vle-user"
+									data-id="u:oae:xJgTBdtQri">
+									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+								</div>
+
+								<div>
+									<h3 class="vle-threedots">
+										<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal">Abhishek
+											Agarwal</a>
+									</h3>
+									<small class="vle-threedots">Manager</small>
+
+								</div>
+							</div>
+						</div>
+
+
+						<div class="vle-list-compact-item">
+							<div class="vle-listitem vle-listitem-compact">
+
+
+
+								<div class="vle-thumbnail icon-vle- icon-vle-user"
+									data-id="u:oae:xJgTBdtQri">
+									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+								</div>
+
+								<div>
+									<h3 class="vle-threedots">
+										<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal">Abhishek
+											Agarwal</a>
+									</h3>
+									<small class="vle-threedots">Manager</small>
+
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="text-center hide" style="clear: both; display: none;">
+					<i class="icon-spinner icon-spin"><span class="vle-aural-text">Loading
+							...</span></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" class="template" id="AddMembersTemplate">
+<div id="manageaccess-modal" class="modal hide fade in" tabindex="-1"
+	role="dialog" aria-labelledby="manageaccess-modal-title"
+	aria-hidden="false" style="display: block;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">&#215;</button>
+		<h3 id="manageaccess-modal-title">Manage access</h3>
+	</div>
+	<div class="modal-body">
+		<div id="manageaccess-overview" style="display: none;">
+			<h4>Visibility</h4>
+			<div id="manageaccess-overview-visibility" class="well">
+				<button id="manageaccess-change-visibility" class="btn pull-right">Change</button>
+				<div id="manageaccess-overview-visibility-container">
+					<i class="icon-vle-loggedin pull-left"></i> <span> Open
+						Academic Environment </span>
+				</div>
+			</div>
+			<h4>
+				<span id="manageaccess-overview-shared-title">Group members</span>
+				<button id="manageaccess-share-add-more"
+					class="btn btn-small pull-right">
+					<i class="icon-plus-sign"></i> Add more
+				</button>
+			</h4>
+			<div id="manageaccess-overview-shared" class="well">
+				<ul id="manageaccess-overview-selected"
+					class="vle-list vle-list-compact" aria-live="assertive">
+					<li data-id="u:oae:xJgTBdtQri">
+						<div class="vle-list-compact-item">
+							<div class="vle-listitem vle-listitem-compact">
+								<div class="vle-listitem-actions pull-right">
+									<button type="button"
+										title="Remove &quot;Abhishek Agarwal&quot; from the list of members"
+										class="close" data-id="u:oae:xJgTBdtQri">×</button>
+									<label for="manageaccess-u:oae:xJgTBdtQri-role"
+										class="vle-aural-text">Select role for Abhishek
+										Agarwal</label> <select id="manageaccess-u:oae:xJgTBdtQri-role"
+										data-id="u:oae:xJgTBdtQri">
+										<option value="member">Member</option>
+										<option value="manager" selected="true">Manager</option>
+									</select>
+								</div>
+
+
+								<div class="vle-thumbnail icon-vle- icon-vle-user"
+									data-id="u:oae:xJgTBdtQri">
+									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+								</div>
+
+								<div>
+									<h3 class="vle-threedots">Abhishek Agarwal</h3>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="text-center hide" style="clear: both; display: none;">
+					<i class="icon-spinner icon-spin"><span class="vle-aural-text">Loading
+							...</span></i>
+				</div>
+			</div>
+		</div>
+		<div id="manageaccess-visibility" class="hide" style="display: none;">
+			<!-- -->
+		</div>
+		<div id="manageaccess-share" class="hide" style="display: block;">
+			<h4>Select users and groups to add</h4>
+			<div>
+				<ul class="as-selections" id="as-selections-049">
+					<li class="as-original" id="as-original-049"><label
+						class="vle-aural-text" for="as-input-049">Enter name here</label><input
+						type="text" id="as-input-049" placeholder="Enter name here"
+						autocomplete="off" class="as-input"/><input type="hidden"
+						class="as-values" name="as_values_049" id="as-values-049"/></li>
+				</ul>
+				<div class="as-results" id="as-results-049" style="display: none;"></div>
+			</div>
+			<select id="manageaccess-share-role" class="pull-right">
+				<option value="member">Member</option>
+				<option value="manager">Manager</option>
+			</select>
+			<h4>
+				<label for="manageaccess-share-role" class="pull-right">Add
+					these as</label>
+			</h4>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<div id="manageaccess-overview-footer" style="display: none;">
+			<button class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
+			<button id="manageaccess-overview-save"
+				class="btn btn-primary pull-right" disabled="true">Save</button>
+		</div>
+		<div id="manageaccess-visibility-footer" class="hide"
+			style="display: none;">
+			<button class="manageaccess-cancel btn btn-link pull-left">Cancel</button>
+			<button id="manageaccess-visibility-save"
+				class="btn btn-primary pull-right">Update</button>
+		</div>
+		<div id="manageaccess-share-footer" class="hide"
+			style="display: block;">
+			<button class="manageaccess-cancel btn btn-link pull-left">Cancel</button>
+			<button id="manageaccess-share-update"
+				class="btn btn-primary pull-right" disabled="true">Add</button>
+		</div>
+	</div>
+</div>
+</script>
