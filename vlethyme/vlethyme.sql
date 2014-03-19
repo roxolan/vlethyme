@@ -174,9 +174,11 @@ CREATE TABLE `group_user` (
   CONSTRAINT `fk_group_user_role1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usergroup_group` FOREIGN KEY (`groupId`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usergroup_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `group_user` */
+
+insert  into `group_user`(`id`,`userId`,`groupId`,`roleId`) values (1,1,1,4),(2,1,2,4),(5,1,4,4),(6,1,5,4);
 
 /*Table structure for table `message` */
 
@@ -278,12 +280,13 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
+  `type` tinyint(2) DEFAULT NULL COMMENT '1 - User, 2 - Group Member',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `role` */
 
-insert  into `role`(`id`,`name`) values (1,'student'),(2,'teacher'),(3,'manager');
+insert  into `role`(`id`,`name`,`type`) values (1,'USER_STUDENT',1),(2,'USER_TEACHER',1),(3,'USER_MANAGER',1),(4,'GROUP_MEMBER_MANAGER',2),(5,'GROUP_MEMBER_MEMBER',2);
 
 /*Table structure for table `room` */
 
@@ -414,11 +417,11 @@ CREATE TABLE `user` (
   `password` varchar(100) DEFAULT NULL,
   `username` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`roleId`,`firstName`,`lastName`,`email`,`password`,`username`) values (1,1,'Abhishek','Agarwal','agabhi@gmail.com','pmba5user','pmba5user');
+insert  into `user`(`id`,`roleId`,`firstName`,`lastName`,`email`,`password`,`username`) values (1,1,'pmba5user','pmba5user','agabhi@gmail.com','pmba5user','pmba5user'),(2,1,'emba17user','emba17user','emba17user@gmail.com','emba17user','emba17user'),(3,1,'emba18user','emba18user','emba18user@gmail.com','emba18user','emba18user');
 
 /*Table structure for table `user_course` */
 
