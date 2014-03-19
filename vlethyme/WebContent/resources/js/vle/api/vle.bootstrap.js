@@ -1,23 +1,24 @@
 requirejs.config({
     'baseUrl': 'static',
     'paths': {
-        // jQuery module is managed by require-jquery variation of require.js
         'jquery': 'js/vendor/jquery-1.9.1.min',
-
+        'jquery.autosuggest': 'js/vendor/jquery-plugins/jquery.autoSuggest',
         // Vendor paths
         'bootstrap': 'js/vendor/bootstrap.min',
         'angular': 'js/vendor/angular.min',
         'angular-route': 'js/vendor/angular-route.min',
         'ng-bootstrap': 'js/vendor/ui-bootstrap-tpls-0.10.0.min',
         'domReady': 'js/vendor/domReady',
+        'underscore': 'js/vendor/underscore',
         
 
 
         // VLE API modules
         'vle.core': 'js/vle/api/vle.core',
-        'vle.group': 'js/vle/api/vle.group'
+        'vle.group': 'js/vle/api/vle.group',
+        'vle.util': 'js/vle/api/vle.util'
     },
-    'priority': ['jquery'],
+    'priority': ['jquery', 'underscore'],
     // angular does not support AMD out of the box, put it in a shim
     'shim': {
     	'angular': {

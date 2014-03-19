@@ -22,6 +22,7 @@ public class Role implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
+	private Integer type;
 	private Set<UserCourse> userCourses = new HashSet<UserCourse>(0);
 	private Set<EventUser> eventUsers = new HashSet<EventUser>(0);
 	private Set<GroupUser> groupUsers = new HashSet<GroupUser>(0);
@@ -58,6 +59,15 @@ public class Role implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Column(name = "type", nullable = false)
+	public Integer getType() {
+		return this.type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")

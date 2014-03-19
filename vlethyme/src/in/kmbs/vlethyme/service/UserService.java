@@ -1,30 +1,21 @@
 package in.kmbs.vlethyme.service;
 
-import java.util.List;
+import in.kmbs.vlethyme.dao.UserDAO;
+import in.kmbs.vlethyme.entity.User;
 
-import in.kmbs.vlethyme.dao.User;
-import in.kmbs.vlethyme.dao.UserDao;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("userService")
+@Service
 public class UserService {
-
-	private UserDao userDao;
 	
 	@Autowired
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-
-	public void create(User user) {
-		userDao.create(user);
-	}
+	private UserDAO userDAO;
 	
-	public List<User> getAllUsers() {
-		return userDao.getAllUsers();
+	public List<User> findUsersByNameLike(String name, int limit) {
+		return userDAO.findUsersByNameLike(name, limit);
 	}
-	
 }
 	

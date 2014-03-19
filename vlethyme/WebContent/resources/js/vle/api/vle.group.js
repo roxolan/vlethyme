@@ -50,4 +50,18 @@ define(['exports', 'jquery'], function(exports, $) {
             }
         });
 	};
+	
+	var getGroupMembers = exports.getGroupMembers = function(groupId, callback) {
+		$.ajax({
+            'url': '/group/getGroupMembers',
+            'type': 'GET',
+            'data' : {groupId : groupId},
+            'success': function(data) {
+                callback(null, data);
+            },
+            'error': function(jqXHR, textStatus) {
+                callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
+            }
+        });
+	};
 });

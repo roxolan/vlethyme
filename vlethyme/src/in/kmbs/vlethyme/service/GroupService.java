@@ -25,4 +25,8 @@ public class GroupService {
 	public void createGroup(Group group) {
 		groupDAO.createGroup(group);
 	}
+	
+	public Group updateGroupMembers(in.kmbs.vlethyme.model.Group group) {
+		return groupDAO.updateGroupMembers(group);
+	}
 }

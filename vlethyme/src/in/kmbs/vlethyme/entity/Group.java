@@ -2,9 +2,10 @@ package in.kmbs.vlethyme.entity;
 
 // Generated Mar 18, 2014 3:05:04 PM by Hibernate Tools 4.0.0
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,8 +28,8 @@ public class Group implements java.io.Serializable {
 	private User user;
 	private String name;
 	private Date createdDate;
-	private Set<EventUser> eventUsers = new HashSet<EventUser>(0);
-	private Set<GroupUser> groupUsers = new HashSet<GroupUser>(0);
+	private List<EventUser> eventUsers = new ArrayList<EventUser>(0);
+	private List<GroupUser> groupUsers = new ArrayList<GroupUser>(0);
 
 	public Group() {
 	}
@@ -37,7 +38,7 @@ public class Group implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Group(int id, User user, String name, Date createdDate, Set<EventUser> eventUsers, Set<GroupUser> groupUsers) {
+	public Group(int id, User user, String name, Date createdDate, List<EventUser> eventUsers, List<GroupUser> groupUsers) {
 		this.id = id;
 		this.user = user;
 		this.name = name;
@@ -86,20 +87,20 @@ public class Group implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
-	public Set<EventUser> getEventUsers() {
+	public List<EventUser> getEventUsers() {
 		return this.eventUsers;
 	}
 
-	public void setEventUsers(Set<EventUser> eventUsers) {
+	public void setEventUsers(List<EventUser> eventUsers) {
 		this.eventUsers = eventUsers;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
-	public Set<GroupUser> getGroupUsers() {
+	public List<GroupUser> getGroupUsers() {
 		return this.groupUsers;
 	}
 
-	public void setGroupUsers(Set<GroupUser> groupUsers) {
+	public void setGroupUsers(List<GroupUser> groupUsers) {
 		this.groupUsers = groupUsers;
 	}
 

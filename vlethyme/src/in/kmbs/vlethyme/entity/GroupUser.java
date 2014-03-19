@@ -2,17 +2,15 @@ package in.kmbs.vlethyme.entity;
 
 // Generated Mar 18, 2014 3:05:04 PM by Hibernate Tools 4.0.0
 
-import java.util.HashSet;
-import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,7 +24,6 @@ public class GroupUser implements java.io.Serializable {
 	private Role role;
 	private Group group;
 	private User user;
-	private Set<SurveyUser> surveyUsers = new HashSet<SurveyUser>(0);
 
 	public GroupUser() {
 	}
@@ -34,13 +31,6 @@ public class GroupUser implements java.io.Serializable {
 	public GroupUser(Group group, User user) {
 		this.group = group;
 		this.user = user;
-	}
-
-	public GroupUser(Role role, Group group, User user, Set<SurveyUser> surveyUsers) {
-		this.role = role;
-		this.group = group;
-		this.user = user;
-		this.surveyUsers = surveyUsers;
 	}
 
 	@Id
@@ -82,15 +72,6 @@ public class GroupUser implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "groupUser")
-	public Set<SurveyUser> getSurveyUsers() {
-		return this.surveyUsers;
-	}
-
-	public void setSurveyUsers(Set<SurveyUser> surveyUsers) {
-		this.surveyUsers = surveyUsers;
 	}
 
 }

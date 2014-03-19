@@ -44,30 +44,25 @@
 								</button>
 							</li>
 							<li>
-								<button type="button" class="btn group-trigger-manageaccess">
+								<button type="button" class="btn group-trigger-manageaccess" ng-click="manageAccess()">
 									<i class="icon-lock pull-left"></i>Manage access
 								</button>
 							</li>
 						</ul>
 					</li>
-					<li>
+					<li ng-repeat="groupUser in group.groupUsers">
 
 						<div class="vle-list-grid-item">
 							<div class="vle-tile">
-
-
-								<div
-									class="vle-thumbnail vle-thumbnail-large icon-vle- icon-vle-user"
-									data-id="u:oae:xJgTBdtQri">
-									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+								<div class="vle-thumbnail vle-thumbnail-large icon-vle- icon-vle-user">
+									<a href="/user" title="{{groupUser.user.displayName}}"> </a>
 								</div>
 
 								<div class="vle-tile-metadata">
 									<h3 class="vle-threedots">
-										<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal">Abhishek
-											Agarwal</a>
+										<a href="/user" title="{{groupUser.user.displayName}}" ng-bind="groupUser.user.displayName"></a>
 									</h3>
-									<small class="vle-threedots">Manager</small>
+									<small class="vle-threedots" th:attr="ng-bind= 'groupUser.role.id == 4 &amp;&amp; \'Manager\' || \'Member\''"></small>
 
 								</div>
 							</div>
@@ -77,20 +72,15 @@
 
 						<div class="vle-list-details-item">
 							<div class="vle-listitem">
-
-
-
-								<div class="vle-thumbnail icon-vle- icon-vle-user"
-									data-id="u:oae:xJgTBdtQri">
-									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+								<div class="vle-thumbnail icon-vle- icon-vle-user">
+									<a href="/user" title="{{groupUser.user.displayName}}"> </a>
 								</div>
 
 								<div>
 									<h3 class="vle-threedots">
-										<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal">Abhishek
-											Agarwal</a>
+										<a href="/user" title="{{groupUser.user.displayName}}" ng-bind="groupUser.user.displayName"></a>
 									</h3>
-									<small class="vle-threedots">Manager</small>
+									<small class="vle-threedots" th:attr="ng-bind= 'groupUser.role.id == 4 &amp;&amp; \'Manager\' || \'Member\''"></small>
 
 								</div>
 							</div>
@@ -99,20 +89,16 @@
 
 						<div class="vle-list-compact-item">
 							<div class="vle-listitem vle-listitem-compact">
-
-
-
 								<div class="vle-thumbnail icon-vle- icon-vle-user"
 									data-id="u:oae:xJgTBdtQri">
-									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+									<a href="/user/oae/xJgTBdtQri" title="{{groupUser.user.displayName}}"> </a>
 								</div>
 
 								<div>
 									<h3 class="vle-threedots">
-										<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal">Abhishek
-											Agarwal</a>
+										<a href="/user" title="{{groupUser.user.displayName}}" ng-bind="groupUser.user.displayName"></a>
 									</h3>
-									<small class="vle-threedots">Manager</small>
+									<small class="vle-threedots" th:attr="ng-bind= 'groupUser.role.id == 4 &amp;&amp; \'Manager\' || \'Member\''"></small>
 
 								</div>
 							</div>
@@ -135,10 +121,10 @@
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
 			aria-hidden="true">&#215;</button>
-		<h3 id="manageaccess-modal-title">Manage access</h3>
+		<h3 id="manageaccess-modal-title">Manage access {{view}}</h3>
 	</div>
 	<div class="modal-body">
-		<div id="manageaccess-overview" style="display: none;">
+		<div id="manageaccess-overview" ng-class="{hide: view != 'access'}" >
 			<h4>Visibility</h4>
 			<div id="manageaccess-overview-visibility" class="well">
 				<button id="manageaccess-change-visibility" class="btn pull-right">Change</button>
@@ -150,37 +136,35 @@
 			<h4>
 				<span id="manageaccess-overview-shared-title">Group members</span>
 				<button id="manageaccess-share-add-more"
-					class="btn btn-small pull-right">
+					class="btn btn-small pull-right" ng-click="showView('member')">
 					<i class="icon-plus-sign"></i> Add more
 				</button>
 			</h4>
 			<div id="manageaccess-overview-shared" class="well">
 				<ul id="manageaccess-overview-selected"
 					class="vle-list vle-list-compact" aria-live="assertive">
-					<li data-id="u:oae:xJgTBdtQri">
+					<li ng-repeat="groupUser in group.groupUsers">
 						<div class="vle-list-compact-item">
 							<div class="vle-listitem vle-listitem-compact">
 								<div class="vle-listitem-actions pull-right">
-									<button type="button"
-										title="Remove &quot;Abhishek Agarwal&quot; from the list of members"
+									<button type="button" title="Remove {{groupUser.user.displayName}} from the list of members"
 										class="close" data-id="u:oae:xJgTBdtQri">×</button>
 									<label for="manageaccess-u:oae:xJgTBdtQri-role"
-										class="vle-aural-text">Select role for Abhishek
-										Agarwal</label> <select id="manageaccess-u:oae:xJgTBdtQri-role"
-										data-id="u:oae:xJgTBdtQri">
-										<option value="member">Member</option>
-										<option value="manager" selected="true">Manager</option>
+										class="vle-aural-text" ng-bind="'Select role for '+groupUser.user.displayName"></label> 
+									<select>
+										<option value="4">Member</option>
+										<option value="5" selected="true">Manager</option>
 									</select>
 								</div>
 
 
 								<div class="vle-thumbnail icon-vle- icon-vle-user"
 									data-id="u:oae:xJgTBdtQri">
-									<a href="/user/oae/xJgTBdtQri" title="Abhishek Agarwal"> </a>
+									<a href="/user/oae/xJgTBdtQri" title="{{groupUser.user.displayName}}"> </a>
 								</div>
 
 								<div>
-									<h3 class="vle-threedots">Abhishek Agarwal</h3>
+									<h3 class="vle-threedots" ng-bind="groupUser.user.displayName"></h3>
 								</div>
 							</div>
 						</div>
@@ -195,21 +179,14 @@
 		<div id="manageaccess-visibility" class="hide" style="display: none;">
 			<!-- -->
 		</div>
-		<div id="manageaccess-share" class="hide" style="display: block;">
+		<div id="manageaccess-share" ng-class="{hide: view != 'member'}">
 			<h4>Select users and groups to add</h4>
 			<div>
-				<ul class="as-selections" id="as-selections-049">
-					<li class="as-original" id="as-original-049"><label
-						class="vle-aural-text" for="as-input-049">Enter name here</label><input
-						type="text" id="as-input-049" placeholder="Enter name here"
-						autocomplete="off" class="as-input"/><input type="hidden"
-						class="as-values" name="as_values_049" id="as-values-049"/></li>
-				</ul>
-				<div class="as-results" id="as-results-049" style="display: none;"></div>
+				<input type="text" id="manageaccess-share-autosuggest" placeholder="Enter name here"/>
 			</div>
 			<select id="manageaccess-share-role" class="pull-right">
-				<option value="member">Member</option>
-				<option value="manager">Manager</option>
+				<option value="4">Member</option>
+				<option value="5">Manager</option>
 			</select>
 			<h4>
 				<label for="manageaccess-share-role" class="pull-right">Add
@@ -218,7 +195,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<div id="manageaccess-overview-footer" style="display: none;">
+		<div id="manageaccess-overview-footer"  ng-class="{hide: view != 'access'}">
 			<button class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
 			<button id="manageaccess-overview-save"
 				class="btn btn-primary pull-right" disabled="true">Save</button>
@@ -229,11 +206,10 @@
 			<button id="manageaccess-visibility-save"
 				class="btn btn-primary pull-right">Update</button>
 		</div>
-		<div id="manageaccess-share-footer" class="hide"
-			style="display: block;">
-			<button class="manageaccess-cancel btn btn-link pull-left">Cancel</button>
+		<div id="manageaccess-share-footer"  ng-class="{hide: view != 'member'}">
+			<button class="manageaccess-cancel btn btn-link pull-left" ng-click="showView('access')">Cancel</button>
 			<button id="manageaccess-share-update"
-				class="btn btn-primary pull-right" disabled="true">Add</button>
+				class="btn btn-primary pull-right" ng-click="addMember()" disabled="true">Add</button>
 		</div>
 	</div>
 </div>
