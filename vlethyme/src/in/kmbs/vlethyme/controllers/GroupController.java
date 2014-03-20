@@ -116,6 +116,7 @@ public class GroupController {
 		return null;
 	}
 	
+	@Transactional
 	@RequestMapping(value = "updateGroupMembers", method = RequestMethod.POST)
 	public @ResponseBody
 	List<in.kmbs.vlethyme.model.GroupUser> updateGroupMembers(@RequestBody String requestString) throws JsonParseException, JsonMappingException, IOException {

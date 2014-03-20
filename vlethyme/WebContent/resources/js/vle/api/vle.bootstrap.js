@@ -11,6 +11,8 @@ requirejs.config({
         'domReady': 'js/vendor/domReady',
         'underscore': 'js/vendor/underscore',
         
+        // VLE paths
+        'jquery.clip': 'js/vendor/jquery-plugins/jquery.clip',	
 
 
         // VLE API modules

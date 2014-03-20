@@ -5,7 +5,7 @@
 <head th:include="navlocal :: topNavHeadLocal('Group Place', 'group')" />
 
 
-<body>
+<body ng-controller="GroupController">
 
 <!-- HEADER -->
 <div id="topnavigation">
@@ -40,7 +40,7 @@
                             <div>
                                 <ul>
                                     <li><button class="vle-trigger-changepic"><i class="icon-camera"></i>Change picture</button></li>
-                                    <li><button class="group-trigger-manageaccess"><i class="icon-user"></i>Manage access</button></li>
+                                    <li><button class="group-trigger-manageaccess"  ng-click="manageAccess()"><i class="icon-user"></i>Manage access</button></li>
                                     <li><button class="group-trigger-editgroup"><i class="icon-pencil"></i>Edit details</button></li>
                                 </ul>
                             </div>
@@ -162,6 +162,103 @@
 
         <!-- JAVASCRIPT -->
         <script th:attr="data-main=@{/static/js/vle/api/vle.bootstrap.js},data-loadmodule=@{/static/js/group.js}" th:src="@{/static/js/vendor/requirejs/require.js}"></script>
+
+<script type="text/ng-template" class="template" id="AddMembersTemplate">
+<div id="manageaccess-modal" class="modal hide fade in" tabindex="-1"
+	role="dialog" aria-labelledby="manageaccess-modal-title"
+	aria-hidden="false" style="display: block;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">&#215;</button>
+		<h3 id="manageaccess-modal-title">Manage access {{view}}</h3>
+	</div>
+	<div class="modal-body">
+		<div id="manageaccess-overview" ng-if="view == 'access'" >
+			<h4>Visibility</h4>
+			<div id="manageaccess-overview-visibility" class="well">
+				<button id="manageaccess-change-visibility" class="btn pull-right">Change</button>
+				<div id="manageaccess-overview-visibility-container">
+					<i class="icon-vle-loggedin pull-left"></i> <span> Open
+						Academic Environment </span>
+				</div>
+			</div>
+			<h4>
+				<span id="manageaccess-overview-shared-title">Group members</span>
+				<button id="manageaccess-share-add-more"
+					class="btn btn-small pull-right" ng-click="showView('member')">
+					<i class="icon-plus-sign"></i> Add more
+				</button>
+			</h4>
+			<div id="manageaccess-overview-shared" class="well">
+				<ul id="manageaccess-overview-selected"
+					class="vle-list vle-list-compact" aria-live="assertive">
+					<li ng-repeat="groupUser in group.groupUsers">
+						<div class="vle-list-compact-item">
+							<div class="vle-listitem vle-listitem-compact">
+								<div class="vle-listitem-actions pull-right">
+									<button type="button" title="Remove {{groupUser.user.displayName}} from the list of members" class="close" ng-click="deleteMember(groupUser.user.id)">&#215;</button>
+									<label for="manageaccess-u:oae:xJgTBdtQri-role"
+										class="vle-aural-text" ng-bind="'Select role for '+groupUser.user.displayName"></label> 
+									<select ng-model="groupUser.role.id" ng-options="memberRole.id as memberRole.name for memberRole in memberRoles">
+									</select>
+								</div>
+
+
+								<div class="vle-thumbnail icon-vle- icon-vle-user">
+									<a href="/user/oae/xJgTBdtQri" title="{{groupUser.user.displayName}}"> </a>
+								</div>
+
+								<div>
+									<h3 class="vle-threedots" ng-bind="groupUser.user.displayName"></h3>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="text-center hide" style="clear: both; display: none;">
+					<i class="icon-spinner icon-spin"><span class="vle-aural-text">Loading
+							...</span></i>
+				</div>
+			</div>
+		</div>
+		<div id="manageaccess-visibility" class="hide" style="display: none;">
+			<!-- -->
+		</div>
+		<div id="manageaccess-share" ng-if="view == 'member'">
+			<h4>Select users and groups to add</h4>
+			<div>
+				<input type="text" id="manageaccess-share-autosuggest" placeholder="Enter name here"/>
+			</div>
+			<select id="manageaccess-share-role" class="pull-right">
+				<option ng-value="5">Member</option>
+				<option ng-value="4">Manager</option>
+			</select>
+			<h4>
+				<label for="manageaccess-share-role" class="pull-right">Add
+					these as</label>
+			</h4>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<div id="manageaccess-overview-footer"  ng-if="view == 'access'">
+			<button class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
+			<button id="manageaccess-overview-save"
+				class="btn btn-primary pull-right" ng-click="updateGroupMembers()">Save</button>
+		</div>
+		<div id="manageaccess-visibility-footer" class="hide"
+			style="display: none;">
+			<button class="manageaccess-cancel btn btn-link pull-left">Cancel</button>
+			<button id="manageaccess-visibility-save"
+				class="btn btn-primary pull-right">Update</button>
+		</div>
+		<div id="manageaccess-share-footer"  ng-if="view == 'member'">
+			<button class="manageaccess-cancel btn btn-link pull-left" ng-click="showView('access')">Cancel</button>
+			<button id="manageaccess-share-update"
+				class="btn btn-primary pull-right" ng-click="addMember()" disabled="true">Add</button>
+		</div>
+	</div>
+</div>
+</script>
 
     </body>
 </html>

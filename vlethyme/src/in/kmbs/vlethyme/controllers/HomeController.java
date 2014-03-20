@@ -95,6 +95,11 @@ public class HomeController {
 		return "group-members";
 	}
 	
+	@RequestMapping(value = "/group/manageaccess")
+	public String showGroupManageAccess() {
+		return "group-manageaccess-modal";
+	}
+	
 	@RequestMapping(value = "/group")
 	public String showGroup(Model model) {
 		return "group";

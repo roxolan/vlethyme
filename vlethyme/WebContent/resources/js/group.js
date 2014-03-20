@@ -1,4 +1,4 @@
-require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootstrap', 'vle.core', 'vle.group', 'vle.util'], function(require, $, bootstrap, angular, ngRoute, ngBootstrap, vleCore, vleGroup, vleUtil) {
+require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootstrap', 'vle.core', 'vle.group', 'vle.util', 'jquery.clip'], function(require, $, bootstrap, angular, ngRoute, ngBootstrap, vleCore, vleGroup, vleUtil, clip) {
 	
 	var vle = {};
 	vle.group = vleGroup;
@@ -22,6 +22,7 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 	                  }).
 	                  when('/members/:groupId', {
 	                      templateUrl: 'group/members',
+	                      name : 'members',
 	                      controller: 'MembersController'
 	                  }).
 	                  otherwise({
@@ -29,38 +30,29 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 	                  });
 	              }]);
 	
-	groupApp.controller('ActivityController', ['$scope', '$http',
-	  function ($scope, $http) {
-	}]);
-	
-	groupApp.controller('LibraryController', ['$scope', '$http',
- 	  function ($scope, $http) {
- 	}]);
-	groupApp.controller('DiscussionsController', ['$scope', '$http',
- 	  function ($scope, $http) {
- 	}]);
-	
-	groupApp.controller('MembersController', ['$scope', '$modal', '$routeParams', '$rootScope',
-	  function($scope, $modal, $routeParams, $rootScope) {
-		$scope.groupId =  $routeParams.groupId;
-		
-		$scope.getGroup = function() {
-	    	vle.group.getGroup($scope.groupId, function(error, data) {
-	    		$scope.$apply(function() {
-	    			if (!error) {
-	    				$rootScope.group = data;
-	    				$scope.getGroupMembers();
-	    			} else {
-	    				alert("Error occured while getting the group");
-	    			}
-	    		});
-	    	});
+	groupApp.controller('GroupController', ['$scope', '$route', '$routeParams', '$rootScope', '$modal', '$http',
+ 	  function ($scope, $route, $routeParams, $rootScope, $modal, $http) {
+		$scope.getGroup = function(refresh) {
+	    	if (refresh || !$rootScope.group) {
+	    		vle.group.getGroup($routeParams.groupId, function(error, data) {
+	    			$scope.$apply(function() {
+		    			if (!error) {
+		    				$rootScope.group = data;
+		    				if ($route.current.name == "members") {
+		    					$scope.getGroupMembers();
+		    				}
+		    			} else {
+		    				alert("Error occured while getting the group");
+		    			}
+		    		});
+		    	});
+	    	}
 	    };
-	    $scope.getGroup();
-		
-		
+	    console.log("Get group");
+	    
+	    
 		$scope.getGroupMembers = function() {
-	    	vle.group.getGroupMembers($scope.groupId, function(error, data) {
+	    	vle.group.getGroupMembers($rootScope.group.id, function(error, data) {
 	    		$scope.$apply(function() {
 	    			if (!error) {
 	    				$rootScope.group.groupUsers = data;
@@ -70,27 +62,6 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 	    		});
 	    	});
 	    };
-	    
-	    
-		$scope.addMembers = function() {
-			var modalInstance = $modal.open({
-				templateUrl : 'AddMembersTemplate',
-				controller : 'AddMembersController',
-				resolve : {
-					group : function() {
-						return angular.copy($scope.group);
-					},
-					view : function() {
-						return 'member';
-					}
-				}
-			});
-			modalInstance.result.then(function(status) {
-				if(status && status == "added") {
-					$scope.getGroupMembers();
-				}
-			});
-		};
 		
 		$scope.manageAccess = function() {
 			var modalInstance = $modal.open({
@@ -111,11 +82,61 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 				}
 			});
 		};
+ 	}]);
+	groupApp.controller('ActivityController', ['$scope', '$http',
+	  function ($scope, $http) {
+	}]);
+	
+	groupApp.controller('LibraryController', ['$scope', '$http',
+ 	  function ($scope, $http) {
+ 	}]);
+	groupApp.controller('DiscussionsController', ['$scope', '$http',
+ 	  function ($scope, $http) {
+ 	}]);
+	
+	groupApp.controller('MembersController', ['$scope', '$modal', '$routeParams', '$rootScope',
+	  function($scope, $modal, $routeParams, $rootScope) {
+		
+		$scope.getGroup();
+		
+		$scope.memberRoles = [
+		                 {name:'Member', id:5},
+		                 {name:'Manager', id:4}
+		               ];
+		
+		
+		
+		$scope.addMembers = function() {
+			var modalInstance = $modal.open({
+				templateUrl : 'AddMembersTemplate',
+				controller : 'AddMembersController',
+				resolve : {
+					group : function() {
+						return angular.copy($scope.group);
+					},
+					view : function() {
+						return 'member';
+					}
+				}
+			});
+			modalInstance.result.then(function(status) {
+				if(status && status == "added") {
+					$scope.getGroupMembers();
+				}
+			});
+		};
+		
+		
 	}]);
 	
 	groupApp.controller('AddMembersController', ['$scope', 'group', 'view', '$modalInstance', function($scope, group, view, $modalInstance) {
 		$scope.member = {};
 		$scope.view = view;
+		
+		$scope.memberRoles = [
+				                 {name:'Member', id:5},
+				                 {name:'Manager', id:4}
+				               ];
 		
 		$scope.group = group;
 		
@@ -123,23 +144,33 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 		
 		$scope.showView = function(view) {
 			$scope.view = view;
+			if (view == 'member') {
+				setTimeout(setUpAutoSuggest, 0);
+			}
+		};
+		
+		$scope.deleteMember = function(userId) {
+			$scope.group.groupUsers = jQuery.grep($scope.group.groupUsers, function(groupUser) {
+    		  return groupUser.user.id != userId;
+    		});
 		};
 		
 		$scope.addMember = function() {
 			console.log(getAutosuggestSelection());
 			addNewMembers(getAutosuggestSelection());
-            showPanel('overview');
-            // Disable the add button in the share view
+            $scope.showView('access');
+			// Disable the add button in the share view
             $('#manageaccess-share-update', $rootel).prop('disabled', true);
 		}
 		
 		$scope.updateGroupMembers = function() {
-			vle.group.addMember(groupId, $scope.member, function(error, data) {
+			vle.group.updateGroupMembers($scope.group, function(error, data) {
 	    		$scope.$apply(function() {
 	    			if (!error) {
 	    				$modalInstance.close("added");
+	    				clip.closeClip('#group-clip-template');
 	    			} else {
-	    				alert("Error occured while adding the member!");
+	    				alert("Error occured while updating the group!");
 	    			}
 	    		});
 	    	});
@@ -188,8 +219,8 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
             var selectedItems = [];
             $.each(vle.util.autoSuggest().getSelection($rootel), function(index, selectedItem) {
                 selectedItems.push({
-                    'profile': selectedItem,
-                    'role': $('#manageaccess-share-role', $rootel).val()
+                    'user': {displayName : selectedItem.displayName,  id : selectedItem.id},
+                    'role': {id:parseInt($('#manageaccess-share-role', $rootel).val())}
                 });
             });
             return selectedItems;
@@ -205,20 +236,19 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
             	$scope.group.groupUsers = [];
             }
         	$.each(autoSuggestMembers, function(i, newMember) {
-                membersUpdates[newMember.profile.id] = newMember.role;
                 var alreadyPresent = false;
                 $.each($scope.group.groupUsers, function(j, groupUser) {
-                	if (groupUser.id == newMember.id) {
+                	if (groupUser.user.id == newMember.user.id) {
                 		alreadyPresent = true;
                 		groupUser.role.id = newMember.role.id;
                 	}
-                	if (!alreadyPresent) {
-                		$scope.group.groupUsers.push(newMember.profile);
-                	}
                 });
+                if (!alreadyPresent) {
+            		$scope.group.groupUsers.push(newMember);
+            	}
             });
 
-            infinityScroll.prependItems({'results': autoSuggestMembers});
+            //infinityScroll.prependItems({'results': autoSuggestMembers});
         };
         
         //execute this after template has been rendered

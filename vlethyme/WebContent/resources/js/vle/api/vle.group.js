@@ -64,4 +64,24 @@ define(['exports', 'jquery'], function(exports, $) {
             }
         });
 	};
+	
+	var updateGroupMembers = exports.updateGroupMembers = function (group, callback) {
+		// Set a default callback function in case no callback function has been provided
+        callback = callback || function() {};
+
+
+        $.ajax({
+            'url': '/group/updateGroupMembers',
+            'type': 'POST',
+            'data': JSON.stringify(group),
+            'contentType': "application/json",
+			'dataType': "json",
+            'success': function(data) {
+                callback(null, data);
+            },
+            'error': function(jqXHR, textStatus) {
+                callback({'code': jqXHR.status, 'msg': jqXHR.responseText});
+            }
+        });
+    };
 });

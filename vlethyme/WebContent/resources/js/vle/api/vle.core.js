@@ -4,7 +4,9 @@
  */
 define([
         'jquery',
-        'bootstrap'
+        'bootstrap',
+        
+        'jquery.clip'
     ],
 
     function($) {
