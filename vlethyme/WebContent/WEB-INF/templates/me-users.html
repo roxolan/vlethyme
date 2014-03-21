@@ -1,0 +1,147 @@
+<link rel="stylesheet" type="text/css" th:href="@{static/css/createuser.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{static/css/register.css}" />
+<div class="row-fluid" id="users">
+			<div class="span12">
+				<div id="lhnavigation-page-users">
+					<div id="users-widget" class="vle-list-container">
+						<div class="vle-list-options">
+							<div>
+								<button class="btn vle-list-options-toggle">
+									<h2>
+										Users <i class="icon-caret-down"></i>
+									</h2>
+								</button>
+								<div class="pull-right">
+									<form class="form-search" id="users-search-form">
+										<label class="vle-aural-text" for="users-search-query">Звузити
+											пошук</label> <input type="text" id="users-search-query"
+											class="search-query" placeholder="Звузити пошук" />
+									</form>
+								</div>
+							</div>
+							<div class="vle-list-options-actions clearfix hide">
+								<div id="users-list-options-actions-template"
+									th:include="layout :: usersListOptionsActions"></div>
+							</div>
+						</div>
+						<ul class="vle-list vle-list-grid">
+							<li class="vle-list-actions">
+        						<div class="vle-thumbnail vle-thumbnail-large icon-vle-user"></div>
+        						<ul>
+            						<li>
+                						<button type="button" class="btn vle-trigger-createuser" ng-click="createUser()">
+                    						<i class="icon-plus-sign pull-left"></i>Create User
+                						</button>
+						            </li>
+						        </ul>
+						    </li>
+						    <li ng-repeat="user in users">
+					    		<div class="vle-list-grid-item">
+					               <div class="vle-tile">
+    									<div class="vle-thumbnail vle-thumbnail-large icon-vle- icon-vle-user">
+											<a ng-href="/user#/members/{{user.id}}" title="{{user.displayName}}">   </a>    
+										</div>
+										<div class="vle-tile-metadata">
+											<i class="icon-vle-public pull-right"></i>
+											<h3 class="vle-threedots"><a ng-href="/user#/members/{{user.id}}"  title="{{user.displayName}}" ng-bind="user.displayName"></a></h3>
+											<small class="vle-threedots">user</small>
+										</div>
+									</div>
+					                <input type="checkbox" class="pull-left" data-resourcetype="user" data-resourcesubtype=""/>
+					                <label class="vle-aural-text" ng-bind="user.displayName"></label>
+								</div>
+					        </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<script type="text/ng-template" class="template" id="CreateUserTemplate">
+<!-- Modal -->
+<div  id="createuser-modal"  class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#215;</button>
+        <h3 id="createuser-modal-title">Create user</h3>
+    </div>
+    <form id="createuser-form">
+        <div class="modal-body">
+            <div class="control-group">
+                <label for="createuser-userName"><h4>Username</h4></label>
+				<div id="register-username-controls" class="controls">
+					<input type="text" id="register-username" name="username" class="input-block-level required maxlength-short" placeholder="Username"  ng-model="user.username"/>
+                    <i id="register-username-available" class="icon-remove"></i>
+				</div>
+            </div>
+			<div class="control-group">
+                <label for="createuser-firsName"><h4>First name</h4></label>
+                <div class="controls">
+                    <input type="text" name="firstName" id="createuser-firstName" class="required maxlength-short" placeholder="First name" ng-model="user.firstName" />
+                </div>
+            </div>
+			<div class="control-group">
+                <label for="createuser-lastName"><h4>Last name</h4></label>
+                <div class="controls">
+                    <input type="text" name="lastName" id="createuser-lastName" class="required maxlength-short" placeholder="Last name" ng-model="user.lastName" />
+                </div>
+            </div>
+			<div class="control-group">
+                <label for="createuser-email"><h4>Email</h4></label>
+                <div class="controls">
+                    <input type="text" name="email" id="createuser-email" class="required email maxlength-short" placeholder="Email" ng-model="user.email" />
+                </div>
+            </div>
+			<div class="control-group">
+                <label for="createuser-lastName"><h4>Password</h4></label>
+                <div class="controls">
+                    <input type="password" name="password" id="createuser-password" class="required maxlength-short" placeholder="Password" ng-model="user.password" />
+                </div>
+            </div>
+			<div class="control-group">
+                <label for="createuser-lastName"><h4>Confirm Password</h4></label>
+                <div class="controls">
+                    <input type="password" name="confirmPassword" id="createuser-confirmpassword" class="required maxlength-short" placeholder="Confirm Password" ng-model="user.confirmPassword" />
+                </div>
+            </div>
+            <div>
+            	<h4>Role</h4>
+            	<div class="vle-large-options-container row-fluid">
+			        <label for="vle-visibility-private" class="span4 text-center">
+			            <div class="vle-large-options well pull-left text-center"  ng-class="{checked: (user.role.id == 1)}">
+			                <input type="radio" id="vle-visibility-private" value="private" name="vle-visibility-user" class="pull-left" tabindex="0" ng-click="changeRole(1)" />
+			                <i class="icon-vle-private large text-center"></i>
+			                <span>Student</span>
+			            </div>
+			            <i class="icon-ok hide"></i>
+			            <small>Student get access to resources and collaborate with other students.</small>
+			        </label>
+			        <label for="vle-visibility-loggedin" class="span4 text-center">
+			            <div class="vle-large-options well pull-left text-center" ng-class="{checked: (user.role.id == 2)}" >
+			                <input type="radio" id="vle-visibility-loggedin" value="loggedin" name="vle-visibility-user" class="pull-left" tabindex="0" ng-click="changeRole(2)"/>
+			                <i class="icon-vle-loggedin large text-center"></i>
+			                <span>Teacher</span>
+			            </div>
+			            <i class="icon-ok hide"></i>
+			            <small>Teacher get administration access for their courses.</small>
+			        </label>
+			        <label for="vle-visibility-public" class="span4 text-center">
+			            <div class="vle-large-options well pull-left text-center" ng-class="{checked: (user.role.id == 3)}">
+			                <input type="radio" id="vle-visibility-public" value="public" name="vle-visibility-user" class="pull-left" checked="checked" tabindex="0" ng-click="changeRole(3)"/>
+			                <i class="icon-vle-public large text-center"></i>
+			                <span>Manager</span>
+			            </div>
+			            <i class="icon-ok hide"></i>
+			            <small>Manager can add users and do administration.</small>
+			        </label>
+			    </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary pull-right">Create user</button>
+        </div>
+    </form>
+    </div>
+
+</script>		

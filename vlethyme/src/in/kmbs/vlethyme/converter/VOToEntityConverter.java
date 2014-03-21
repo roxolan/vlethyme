@@ -18,6 +18,7 @@ public class VOToEntityConverter {
 	public static User convert(in.kmbs.vlethyme.model.User user) {
 		User userEntity = new User();
 		userEntity.setId(user.getId());
+		userEntity.setUsername(user.getUsername());
 		userEntity.setFirstName(user.getFirstName());
 		userEntity.setLastName(user.getLastName());
 		userEntity.setPassword(user.getPassword());

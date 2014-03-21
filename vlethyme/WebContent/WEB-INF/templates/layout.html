@@ -398,6 +398,21 @@
 			</button>
 		</div>
 	</div>
+	
+	<div th:fragment="usersListOptionsActions">
+		<div class="btn-group pull-right">
+			<button class="btn" data-type="vle-list-compact">
+				<i class="icon-list"></i> <span class="vle-aural-text">Список</span>
+			</button>
+			<button class="btn" data-type="vle-list-details">
+				<i class="icon-th-list"></i> <span class="vle-aural-text">Розширений
+					список</span>
+			</button>
+			<button class="btn active" data-type="vle-list-grid">
+				<i class="icon-th-large"></i> <span class="vle-aural-text">Решітка</span>
+			</button>
+		</div>
+	</div>
 
 	<div th:fragment="activityNoResults">
 		<div class="alert alert-info">Наразі ще не відбулося оновлень</div>

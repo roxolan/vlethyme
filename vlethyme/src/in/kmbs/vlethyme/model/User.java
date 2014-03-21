@@ -9,7 +9,7 @@ import org.codehaus.jackson.annotate.JsonGetter;
 public class User implements java.io.Serializable {
 
 	private Integer id;
-	private int roleId;
+	private Role role;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -28,11 +28,6 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(int roleId, String username) {
-		this.roleId = roleId;
-		this.username = username;
-	}
-
 	public Integer getId() {
 		return this.id;
 	}
@@ -41,12 +36,12 @@ public class User implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public int getRoleId() {
-		return this.roleId;
+	public Role getRole() {
+		return this.role;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(Role roleId) {
+		this.role = role;
 	}
 
 	public String getFirstName() {

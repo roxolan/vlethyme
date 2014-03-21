@@ -6,7 +6,8 @@ define([
         'jquery',
         'bootstrap',
         
-        'jquery.clip'
+        'jquery.clip',
+        'jquery.validate'
     ],
 
     function($) {

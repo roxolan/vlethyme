@@ -2,14 +2,18 @@ package in.kmbs.vlethyme.entity;
 
 // Generated Mar 18, 2014 3:05:04 PM by Hibernate Tools 4.0.0
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,7 +25,7 @@ import javax.persistence.Table;
 public class User implements java.io.Serializable {
 
 	private Integer id;
-	private int roleId;
+	private Role role;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -40,30 +44,6 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(int roleId, String username) {
-		this.roleId = roleId;
-		this.username = username;
-	}
-
-	public User(int roleId, String firstName, String lastName, String email, String password, String username, Set<MessgeRecepient> messgeRecepients,
-			Set<Forum> forums, Set<EventUser> eventUsers, Set<UserCourse> userCourses, Set<GroupUser> groupUsers, Set<Group> groups,
-			Set<UserModule> userModules, Set<SurveyUser> surveyUsers, Set<SurveyAnswer> surveyAnswers) {
-		this.roleId = roleId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.username = username;
-		this.messgeRecepients = messgeRecepients;
-		this.forums = forums;
-		this.eventUsers = eventUsers;
-		this.userCourses = userCourses;
-		this.groupUsers = groupUsers;
-		this.groups = groups;
-		this.userModules = userModules;
-		this.surveyUsers = surveyUsers;
-		this.surveyAnswers = surveyAnswers;
-	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -76,13 +56,14 @@ public class User implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "roleId", nullable = false)
-	public int getRoleId() {
-		return this.roleId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "roleId", nullable = false)
+	public Role getRole() {
+		return this.role;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Column(name = "firstName", length = 45)

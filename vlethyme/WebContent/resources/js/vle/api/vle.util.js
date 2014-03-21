@@ -134,12 +134,12 @@ define(['exports', 'require', 'jquery', 'underscore', 'jquery.autosuggest'], fun
             options.selectionAdded = function(elem) {
                 var $elem = $(elem);
                 // Make sure that the item cannot overflow
-                $elem.addClass('oae-threedots');
+                $elem.addClass('vle-threedots');
 
                 var originalData = $elem.data('originalData');
                 if (originalData.resourceType) {
                     // Prepend a thumbnail to the item to add to the list
-                    var $thumbnail = $('<div>').addClass('vle-thumbnail icon-oae-' + originalData.resourceType);
+                    var $thumbnail = $('<div>').addClass('vle-thumbnail icon-vle-' + originalData.resourceType);
                     if (originalData.thumbnailUrl) {
                         $thumbnail.append($('<div>')
                             .css('background-image', 'url("' + originalData.thumbnailUrl + '")')
@@ -235,6 +235,216 @@ define(['exports', 'require', 'jquery', 'underscore', 'jquery.autosuggest'], fun
             'setup': setup,
             'focus': focus,
             'getSelection': getSelection
+        };
+    };
+    
+    /*!
+     * All functionality related to validating forms
+     */
+    var validation = exports.validation = function() {
+
+        /**
+         * Initialize the validation utility functions by adding some custom validators
+         * to jquery.validate
+         *
+         * @api private
+         */
+        var init = function() {
+            // Don't allow the field to have more than 1000 characters
+            $.validator.addMethod('maxlength-short', function(value, element) {
+                return $.trim(value.length) <= 1000;
+            });
+
+            // Don't allow the field to have more than 10000 characters
+            $.validator.addMethod('maxlength-medium', function(value, element) {
+                return $.trim(value.length) <= 10000;
+            });
+
+            // Don't allow the field to have more than 100000 characters
+            $.validator.addMethod('maxlength-long', function(value, element) {
+                return $.trim(value.length) <= 100000;
+            });
+
+            // Don't allow spaces in the field
+            $.validator.addMethod('nospaces', function(value, element) {
+                return this.optional(element) || (value.indexOf(' ') === -1);
+            });
+
+            // Prepends http if no protocol has been provided
+            $.validator.addMethod('prependhttp', function(value, element) {
+                if ($.trim(value) !== '' && value.substring(0,7) !== 'http://' && value.substring(0,6) !== 'ftp://' && value.substring(0,8) !== 'https://') {
+                    $(element).val('http://' + value);
+                }
+                return true;
+            });
+        };
+
+        /**
+         * Validate a form using the jquery.validate plugin. This will automatically style the error messages, as well as positioning
+         * them appropriately and giving all of the required aria roles for accessibility. This function is mostly just a wrapper around
+         * jquery.validate, and supports all of the options supported by jquery.validate (see http://bassistance.de/jquery-plugins/jquery-plugin-validation/)
+         *
+         * In order for forms to have the appropriate validation styles, each label and control should be wrapped in an element with a `control-group` class.
+         * The label should have a `control-label` class. All input fields should be accompanied by a label, mostly for accessibility purposes.
+         * More information on creating forms (including horizontal forms) can be found at http://twitter.github.com/bootstrap/base-css.html#forms
+         *
+         * Validation messages will by default be displayed underneath the input field. If a custom position for the validation needs to provided,
+         * a placeholder element with the class `help` should be created inside of the `control-group` element.
+         *
+         * Metadata can be added directly onto the HTML fields to tell jquery.validate which validation rules to use. These should be added as a class onto
+         * the input field. The available ones are:
+         *
+         * - `required`: Makes the element always required.
+         * - `email`: Makes the element require a valid email.
+         * - `number`: Makes the element require a decimal number.
+         * - `url`: Makes the element require a valid url.
+         * - `date`: Makes the element require a date.
+         * - `dateISO`: Makes the element require a ISO date.
+         * - `creditcard`: Makes the element require a creditcard number.
+         *
+         * Example:
+         *
+         * ```
+         * <form id='form_id' role='main'>
+         *      <div class='control-group'>
+         *          <label for='firstName' class='control-label'>__MSG__FIRSTNAME__</label>
+         *          <input type='text' maxlength='255' id='firstName' name='firstName' class='required' placeholder='Hiroyuki'/>
+         *      </div>
+         *      <div class='control-group'>
+         *          <label for='lastName' class='control-label'>__MSG__LASTNAME__</label>
+         *          <span class="help"></span>
+         *          <input type='text' maxlength='255' id='lastName' name='lastName' class='required' placeholder='Sakai'/>
+         *      </div>
+         * </div>
+         * ```
+         *
+         * All other validation configuration should be passed into the options object when calling `oae.api.util.validation().validate($form, options)`.
+         *
+         * OAE defines the additional validation methods:
+         *
+         * - `nospaces`: Makes the element require no spaces.
+         * - `prependhttp`: Prepends http:// to a URL field if no protocal has been specified.
+         *
+         * @param  {Element|String}     $form                           jQuery form element or jQuery selector for that form which we want to validate
+         * @param  {Object}             [options]                       JSON object containing options to pass to the to the jquery validate plugin, as defined on http://docs.jquery.com/Plugins/Validation/validate#options
+         * @param  {Object}             [options.methods]               Extension to the jquery validate options, allowing to specify custom validators. The keys should be the validator identifiers. The value should be an object with a method key containing the validator function and a text key containing the validation message
+         */
+        var validate = function($form, options) {
+            if (!$form) {
+                throw new Error('A valid form should be provided');
+            }
+            // Make sure the form is a jQuery element
+            $form = $($form);
+
+            options = options || {};
+
+            // We need to first handle the invalid and submit callback inside of this function, in order to set/remove all of the necessary
+            // styles and aria attributes. Therefore, we cache these callback so they can be  called after those functions have finished
+            var invalidCallback = null;
+            if (options.invalidHandler && $.isFunction(options.invalidHandler)) {
+                invalidCallback = options.invalidHandler;
+            }
+            var submitCallback = null;
+            if (options.submitHandler && $.isFunction(options.submitHandler)) {
+                submitCallback = options.submitHandler;
+            }
+
+            // Register the custom validation methods
+            if (options.methods) {
+                $.each(options.methods, function(key, value) {
+                    $.validator.addMethod(key, value.method, value.text);
+                });
+            }
+
+            // We register the submit handler. This will be called when the overall form
+            // validation has succeeded
+            options.submitHandler = function($thisForm, validator) {
+                // We clear all the old validation styles
+                clear($form);
+                // Call the cached invalid handler callback
+                if (submitCallback) {
+                    submitCallback($thisForm, validator);
+                }
+                return false;
+            };
+
+            // We register the invalid handler. This will be called once when the overall
+            // form validation has failed
+            options.invalidHandler = function($thisForm, validator) {
+                // We clear all the old validation styles
+                clear($form);
+                // Call the cached invalid handler callback
+                if (invalidCallback) {
+                    invalidCallback($thisForm, validator);
+                }
+            };
+
+            // Function that will be called when an invalid form field should be marked
+            // as invalid. In that case, we add an `error` class to the parent `control-group`
+            // element
+            options.highlight = function($element) {
+                $($element).parents('.control-group').addClass('error');
+            };
+
+            // Function that will be called when a form field should be marked no longer
+            // needs to be marked as invalid. In that case, we remove the `error` class from
+            // the parent `control-group` element
+            options.unhighlight = function($element) {
+                $($element).parents('.control-group').removeClass('error');
+            };
+
+            // We register the error placement handler. This will be called for each field that
+            // fails validation and will be used to customize the placement of the validation messages
+            options.errorPlacement = options.errorPlacement || function($error, $element) {
+                // Set the id on the validation message and set the aria-invalid and aria-describedby attributes
+                $error.attr('id', $element.attr('name') + '-error');
+                $element.attr('aria-invalid', 'true');
+                $element.attr('aria-describedby', $element.attr('name') + '-error');
+                // Set a class on the error message so it can be easily deleted again
+                $error.addClass('vle-error');
+                // Check if an error message placehold has been provided. If not, we default
+                // to a `help-block` display and insert it after the input field
+                var $helpPlaceholder = $('.help', $element.parents('.control-group'));
+                if ($helpPlaceholder.length === 0) {
+                    $error.addClass('help-block');
+                    $error.insertAfter($element);
+                } else {
+                    $helpPlaceholder.append($error);
+                }
+            };
+
+            // Set up the form with the provided options in jquery.validate
+            $form.validate(options);
+        };
+
+        /**
+         * Clear the validation on a form. This will remove all visible validation styles, as well as the aria roles.
+         *
+         * @param  {Element|String}     $form       jQuery form element or jQuery selector for that form for which we want to clear the validation
+         * @throws {Error}                          Error thrown when no form has been provided
+         */
+        var clear = function($form) {
+            if (!$form) {
+                throw new Error('A valid form should be provided');
+            }
+            // Make sure the form is a jQuery element
+            $form = $($form);
+            // The Bootstrap `error` class will be set on the element that has the `control-group` class.
+            // When clearing validation, we remove this `error` class. We also remove the actual error
+            // messages from the dom
+            $form.find('.vle-error').remove();
+            $form.find('.error').removeClass('error');
+            // When a field is invalid, the aria-invalid attribute on the field will be set to true, and
+            // the aria-describedby attribute will be set to point to the validation message. When clearing
+            // validation, we remove both of these
+            $form.find('*[aria-invalid]').removeAttr('aria-invalid');
+            $form.find('*[aria-describedby]').removeAttr('aria-describedby');
+        };
+
+        return {
+            'init': init,
+            'validate': validate,
+            'clear': clear
         };
     };
 });

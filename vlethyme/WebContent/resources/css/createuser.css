@@ -1,0 +1,7 @@
+#createuser-modal #createuser-form {
+    margin-bottom: 0;
+}
+
+#createuser-modal #createuser-form input[type="text"], #createuser-modal #createuser-form input[type="email"], #createuser-modal #createuser-form input[type="password"] {
+    width: 100%;
+}

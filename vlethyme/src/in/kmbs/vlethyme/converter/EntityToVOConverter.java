@@ -18,6 +18,7 @@ public class EntityToVOConverter {
 	public static User convert(in.kmbs.vlethyme.entity.User user) {
 		User userModel = new User();
 		userModel.setId(user.getId());
+		userModel.setUsername(user.getUsername());
 		userModel.setFirstName(user.getFirstName());
 		userModel.setLastName(user.getLastName());
 		userModel.setPassword(user.getPassword());

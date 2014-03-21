@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" th:href="@{static/css/creategroup.css}" />
 <div class="row-fluid" id="groups">
 			<div class="span12">
 				<div id="lhnavigation-page-groups">
@@ -58,7 +59,7 @@
 
 <script type="text/ng-template" class="template" id="CreateGroupTemplate">
 <!-- Modal -->
-<div class="modal-content">
+<div id="creategroup-modal" class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#215;</button>
         <h3 id="creategroup-modal-title">Create group</h3>
@@ -73,9 +74,9 @@
             </div>
             <div id="creategroup-visibility-container">
             	<h4>Visibility</h4>
-            	<div class="large-options-container row-fluid">
+            	<div class="vle-large-options-container row-fluid">
 			        <label for="vle-visibility-private" class="span4 text-center">
-			            <div class="large-options well pull-left text-center"  ng-class="{checked: (group.visibility == 1)}">
+			            <div class="vle-large-options well pull-left text-center"  ng-class="{checked: (group.visibility == 1)}">
 			                <input type="radio" id="vle-visibility-private" value="private" name="vle-visibility-group" class="pull-left" tabindex="0" ng-click="changeVisibility(1)" />
 			                <i class="icon-vle-private large text-center"></i>
 			                <span>Participants only</span>
@@ -84,7 +85,7 @@
 			            <small>The group will be private and only visible to its members</small>
 			        </label>
 			        <label for="vle-visibility-loggedin" class="span4 text-center">
-			            <div class="large-options well pull-left text-center" ng-class="{checked: (group.visibility == 2)}" >
+			            <div class="vle-large-options well pull-left text-center" ng-class="{checked: (group.visibility == 2)}" >
 			                <input type="radio" id="vle-visibility-loggedin" value="loggedin" name="vle-visibility-group" class="pull-left" tabindex="0" ng-click="changeVisibility(2)"/>
 			                <i class="icon-vle-loggedin large text-center"></i>
 			                <span>Open Academic Environment</span>
@@ -93,7 +94,7 @@
 			            <small>The group can be found and seen by everyone in Open Academic Environment</small>
 			        </label>
 			        <label for="vle-visibility-public" class="span4 text-center">
-			            <div class="large-options well pull-left text-center" ng-class="{checked: (group.visibility == 3)}">
+			            <div class="vle-large-options well pull-left text-center" ng-class="{checked: (group.visibility == 3)}">
 			                <input type="radio" id="vle-visibility-public" value="public" name="vle-visibility-group" class="pull-left" checked="checked" tabindex="0" ng-click="changeVisibility(3)"/>
 			                <i class="icon-vle-public large text-center"></i>
 			                <span>Public</span>
@@ -112,7 +113,6 @@
     </div>
 
 </script>		
-<!-- MODAL -->
-<div id="creategroup-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="creategroup-modal-title" aria-hidden="true" >
-    
-</div>
+
+<!-- JAVASCRIPT -->
+<script type="text/javascript" src="js/creategroup.js"></script>

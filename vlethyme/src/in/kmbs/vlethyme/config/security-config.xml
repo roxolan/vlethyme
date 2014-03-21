@@ -45,7 +45,14 @@
 				class="in.kmbs.vlethyme.security.VlethymeLdapAuthoritiesPopulator">
 			</beans:bean>
 		</beans:constructor-arg>
+		<beans:property name="userDetailsContextMapper" ref = "vlethymeUserContextMapper"></beans:property>
 	</beans:bean>
+	
+	<beans:bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+	  <beans:constructor-arg ref="contextSource" />
+	</beans:bean>
+	
+	<beans:bean id="vlethymeUserContextMapper" class="in.kmbs.vlethyme.security.VlethymeUserContextMapper" />
 
 
 </beans:beans>

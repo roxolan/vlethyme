@@ -12,13 +12,15 @@ requirejs.config({
         'underscore': 'js/vendor/underscore',
         
         // VLE paths
-        'jquery.clip': 'js/vendor/jquery-plugins/jquery.clip',	
+        'jquery.clip': 'js/vendor/jquery-plugins/jquery.clip',
+        'jquery.validate': 'js/vendor/jquery-plugins/jquery.validate',
 
 
         // VLE API modules
         'vle.core': 'js/vle/api/vle.core',
         'vle.group': 'js/vle/api/vle.group',
-        'vle.util': 'js/vle/api/vle.util'
+        'vle.util': 'js/vle/api/vle.util',
+        'vle.user': 'js/vle/api/vle.user'
     },
     'priority': ['jquery', 'underscore'],
     // angular does not support AMD out of the box, put it in a shim

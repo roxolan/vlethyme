@@ -55,6 +55,11 @@ public class HomeController {
 		return "me-groups";
 	}
 	
+	@RequestMapping(value = "/me/users")
+	public String showMeUsers() {
+		return "me-users";
+	}
+	
 	@RequestMapping(value = "/me/content")
 	public String showMeContent() {
 		return "me-content";
@@ -93,11 +98,6 @@ public class HomeController {
 	@RequestMapping(value = "/group/members")
 	public String showGroupMembers() {
 		return "group-members";
-	}
-	
-	@RequestMapping(value = "/group/manageaccess")
-	public String showGroupManageAccess() {
-		return "group-manageaccess-modal";
 	}
 	
 	@RequestMapping(value = "/group")
