@@ -16,6 +16,7 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,9 +35,8 @@ public class GroupController {
 	@RequestMapping(value = "mygroups")
 	public @ResponseBody
 	List<in.kmbs.vlethyme.model.Group> myGroups() {
-		// UserDetails user = (UserDetails)
-		// SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<Group> groupsEntity = groupService.getGroupsByUserId(1);
+		in.kmbs.vlethyme.model.User loggedInUser = ((in.kmbs.vlethyme.security.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+		List<Group> groupsEntity = groupService.getGroupsByUserId(loggedInUser.getId());
 
 		List<in.kmbs.vlethyme.model.Group> groups = new ListVOConverter<in.kmbs.vlethyme.model.Group>() {
 
@@ -64,7 +64,7 @@ public class GroupController {
 	in.kmbs.vlethyme.model.Group getGroupById(@RequestParam Integer groupId) {
 		// UserDetails user = (UserDetails)
 		// SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Group groupEntity = groupService.getGroupByIdByUserId(groupId, 1);
+		Group groupEntity = groupService.getGroupById(groupId);
 
 		in.kmbs.vlethyme.model.Group groupModel = EntityToVOConverter.convert(groupEntity);
 		return groupModel;
@@ -73,13 +73,12 @@ public class GroupController {
 	@RequestMapping(value = "createGroup", method = RequestMethod.POST)
 	public @ResponseBody
 	in.kmbs.vlethyme.model.Group createGroup(@RequestBody String requestString) throws JsonParseException, JsonMappingException, IOException {
-		// UserDetails user = (UserDetails)
-		// SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		in.kmbs.vlethyme.model.User loggedInUser = ((in.kmbs.vlethyme.security.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		Group group = mapper.readValue(requestString, in.kmbs.vlethyme.entity.Group.class);
 		User user = new User();
-		user.setId(1);
+		user.setId(loggedInUser.getId());
 		group.setUser(user);
 		groupService.createGroup(group);
 		in.kmbs.vlethyme.model.Group groupModel = EntityToVOConverter.convert(group);
@@ -90,7 +89,7 @@ public class GroupController {
 	@RequestMapping(value = "getGroupMembers")
 	public @ResponseBody
 	List<in.kmbs.vlethyme.model.GroupUser> getGroupMembers(@RequestParam Integer groupId) {
-		Group groupEntity = groupService.getGroupByIdByUserId(groupId, 1);
+		Group groupEntity = groupService.getGroupById(groupId);
 		if (CollectionUtils.isNotEmpty(groupEntity.getGroupUsers())) {
 			List<in.kmbs.vlethyme.model.GroupUser> groupUsers = new ListVOConverter<in.kmbs.vlethyme.model.GroupUser>() {
 	

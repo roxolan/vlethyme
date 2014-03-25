@@ -6,11 +6,11 @@ import in.kmbs.vlethyme.entity.GroupUser;
 import in.kmbs.vlethyme.entity.Role;
 import in.kmbs.vlethyme.enums.GroupMemberRoleEnum;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -40,17 +40,27 @@ public class GroupDAO {
 		
 	}
 	
-	public List<Group> getGroupsByUserId(int userId) {
+	public Group getGroupById(int groupId) {
 		Criteria criteria = getSession().createCriteria(Group.class);
-		criteria.createAlias("user", "user");
-		criteria.add(Restrictions.eq("user.id", userId));
+		criteria.add(Restrictions.eq("id", groupId));
 		@SuppressWarnings("unchecked")
 		List<Group> groups = criteria.list();
+		
+		return CollectionUtils.isNotEmpty(groups) ? groups.get(0) : null;
+		
+	}
+	
+	public List<Group> getGroupsByUserId(int userId) {
+		Query query = getSession().createQuery("SELECT gu.group from GroupUser AS gu where gu.user.id = ?");
+		query.setParameter(0, userId);
+		@SuppressWarnings("unchecked")
+		List<Group> groups = query.list();
 		return groups;
 	}
 	
 	public void createGroup(Group group) {
 		getSession().save(group);
+		System.out.println(group.getId());
 		GroupUser groupUser = new GroupUser();
 		groupUser.setGroup(group);
 		groupUser.setUser(group.getUser());

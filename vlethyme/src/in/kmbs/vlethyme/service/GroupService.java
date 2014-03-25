@@ -18,6 +18,10 @@ public class GroupService {
 		return groupDAO.getGroupsByUserId(userId);
 	}
 	
+	public Group getGroupById(int groupId) {
+		return groupDAO.getGroupById(groupId);
+	}
+	
 	public Group getGroupByIdByUserId(int groupId, int userId) {
 		return groupDAO.getGroupByIdByUserId(groupId, userId);
 	}

@@ -21,5 +21,6 @@ public class User extends org.springframework.security.core.userdetails.User {
 			Collection<? extends GrantedAuthority> authorities) {
 		super(user.getUsername(), "", enabled, accountNonExpired,
 				credentialsNonExpired, accountNonLocked, authorities);
+		this.user = user; 
 	}
 }
