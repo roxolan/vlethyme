@@ -7,122 +7,104 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 	
 	vle.util.validation().init();
 	
-	var meApp = angular.module('meApp', ['ngRoute', 'ui.bootstrap']);
-	meApp.config(['$routeProvider',
-	              function($routeProvider) {
-	                $routeProvider.
-	                  when('/dashboard', {
-	                    templateUrl: 'me/dashboard',
-	                    controller: 'DashboardController'
-	                  }).
-	                  when('/groups', {
-	                    templateUrl: 'me/groups',
-	                    controller: 'GroupsController'
-	                  }).
-	                  when('/courses', {
-	                      templateUrl: 'me/courses',
-	                      controller: 'CoursesController'
-	                  }).
-	                  when('/calendar', {
-	                      templateUrl: 'me/calendar',
-	                      controller: 'CalendarController'
-	                  }).
-	                  when('/content', {
-	                      templateUrl: 'me/content',
-	                      controller: 'ContentController'
-	                  }).
-	                  when('/discussions', {
-	                      templateUrl: 'me/discussions',
-	                      controller: 'DiscussionsController'
-	                  }).
-	                  when('/network', {
-	                      templateUrl: 'me/network',
-	                      controller: 'NetworkController'
-	                  }).
-	                  when('/users', {
-	                      templateUrl: 'me/users',
-	                      controller: 'UsersController'
-	                  }).
-	                  otherwise({
-	                    redirectTo: '/dashboard'
-	                  });
-	              }]);
+	var app = angular.module('app', ['ngRoute', 'ui.bootstrap']);
+	app.config(['$routeProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', function($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
+		
+		app.controllerProvider = $controllerProvider;
+		app.compileProvider    = $compileProvider;
+		app.routeProvider      = $routeProvider;
+		app.filterProvider     = $filterProvider;
+		app.provide            = $provide;
+		          
+		$routeProvider.
+	          when('/dashboard', {
+	            templateUrl: 'me/dashboard',
+	            controller: 'DashboardController'
+	          }).
+	          when('/groups', {
+	            templateUrl: '/partials/groups',
+	            controller: 'GroupsController',
+	            resolve: {
+		        	deps: function($q, $rootScope) {
+		        		var deferred = $q.defer();
+		        		var dependencies =
+		                    [
+		                     	'/static/js/groups.js'
+		                    ];
+		        		require(dependencies, function()
+		        			    {
+		        	        // all dependencies have now been loaded by so resolve the promise
+		        	        $rootScope.$apply(function()
+		        	        {
+		        	            deferred.resolve();
+		        	        });
+		        	    });
+		        		return deferred.promise;
+		        	},
+		        	
+		        	parameters : function() { return {canManage : true};}
+		        }
+	          }).
+	          when('/courses', {
+	              templateUrl: 'me/courses',
+	              controller: 'CoursesController'
+	          }).
+	          when('/calendar', {
+	              templateUrl: 'me/calendar',
+	              controller: 'CalendarController'
+	          }).
+	          when('/content', {
+	              templateUrl: 'me/content',
+	              controller: 'ContentController'
+	          }).
+	          when('/forums', {
+	            templateUrl: '/partials/forumslibrary',
+	            controller: 'ForumsLibraryController',
+	            resolve: {
+		        	deps: function($q, $rootScope) {
+		        		var deferred = $q.defer();
+		        		var dependencies =
+		                    [
+		                     	'/static/js/forumslibrary.js'
+		                    ];
+		        		require(dependencies, function()
+		        			    {
+		        	        // all dependencies have now been loaded by so resolve the promise
+		        	        $rootScope.$apply(function()
+		        	        {
+		        	            deferred.resolve();
+		        	        });
+		        	    });
+		        		return deferred.promise;
+		        	},
+		        	
+		        	parameters : function() { return {canManage : true};}
+		        }
+	          }).
+	          when('/network', {
+	              templateUrl: 'me/network',
+	              controller: 'NetworkController'
+	          }).
+	          when('/users', {
+	              templateUrl: 'me/users',
+	              controller: 'UsersController'
+	          }).
+	          otherwise({
+	            redirectTo: '/dashboard'
+	          });
+	}]);
 	
-	
-	
-	 
-	
-	meApp.controller('DashboardController', ['$scope', '$http',
+	app.controller('DashboardController', ['$scope', '$http',
 	  function ($scope, $http) {
 	    
 	    $scope.orderProp = 'age';
 	  }]);
 	 
-	meApp.controller('GroupsController', ['$scope', '$modal',
-	  function($scope, $modal) {
-	    $scope.getMyGroups = function() {
-	    	vle.group.getMyGroups(function(error, data) {
-	    		$scope.$apply(function() {
-	    			if (!error) {
-	    				$scope.groups = data;
-	    			} else {
-	    				alert("Error occured while getting the groups");
-	    			}
-	    		});
-	    	});
-	    };
-	    $scope.getMyGroups();
-	    
-		$scope.createGroup = function() {
-			var modalInstance = $modal.open({
-				templateUrl : 'CreateGroupTemplate',
-				controller : 'CreateGroupController',
-				resolve : {
-					
-				}
-			});
-			modalInstance.result.then(function(status) {
-				if(status && status == "added") {
-					$scope.getMyGroups();
-				}
-			});
-		};
-	}]);
-	
-	meApp.controller('CreateGroupController', ['$scope', '$modalInstance', function($scope, $modalInstance) {
-		$scope.group = {visibility : 3};
-		$scope.changeVisibility = function(val) {
-			$scope.group.visibility = val;
-		};
-		
-		$scope.createGroup = function() {
-			vle.group.createGroup($scope.group, function(error, data) {
-	    		$scope.$apply(function() {
-	    			if (!error) {
-	    				$modalInstance.close("added");
-	    			} else {
-	    				alert("Error occured while creating the group!");
-	    			}
-	    		});
-	    	});
-		};
-		
-		/**
-         * Initializes the create group form and validation
-         */
-        var setUpValidation = function() {
-            vle.util.validation().validate($('#creategroup-form', $rootel), {
-                'submitHandler': createGroup
-            });
-        };
-        setTimeout(setUpValidation, 0);
-	}]);
-	
 	require(['domReady!'], function (document) {
-		angular.bootstrap(document, ['meApp']);
+		angular.bootstrap(document, ['app']);
 	});
 	
-	meApp.controller('UsersController', ['$scope', '$modal',
+	app.controller('UsersController', ['$scope', '$modal',
      function($scope, $modal) {
 		$scope.getUsers = function() {
 	    	vle.user.getUsers(function(error, data) {
@@ -154,7 +136,7 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 		};
 	}]);
 	
-	meApp.controller('CreateUserController', ['$scope', '$modalInstance', function($scope, $modalInstance) {
+	app.controller('CreateUserController', ['$scope', '$modalInstance', function($scope, $modalInstance) {
 		
 		$rootel ="#createuser-modal";
 		

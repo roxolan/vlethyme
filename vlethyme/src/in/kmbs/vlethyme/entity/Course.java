@@ -25,7 +25,7 @@ public class Course implements java.io.Serializable {
 	private String description;
 	private Set<CourseResource> courseResources = new HashSet<CourseResource>(0);
 	private Set<UserCourse> userCourses = new HashSet<UserCourse>(0);
-	private Set<Forum> forums = new HashSet<Forum>(0);
+	private Set<ForumMember> forumMembers = new HashSet<ForumMember>(0);
 	private Set<Module> modules = new HashSet<Module>(0);
 
 	public Course() {
@@ -35,12 +35,12 @@ public class Course implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Course(String name, String description, Set<CourseResource> courseResources, Set<UserCourse> userCourses, Set<Forum> forums, Set<Module> modules) {
+	public Course(String name, String description, Set<CourseResource> courseResources, Set<UserCourse> userCourses, Set<ForumMember> forumMembers, Set<Module> modules) {
 		this.name = name;
 		this.description = description;
 		this.courseResources = courseResources;
 		this.userCourses = userCourses;
-		this.forums = forums;
+		this.forumMembers = forumMembers;
 		this.modules = modules;
 	}
 
@@ -92,12 +92,12 @@ public class Course implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
-	public Set<Forum> getForums() {
-		return this.forums;
+	public Set<ForumMember> getForumMembers() {
+		return this.forumMembers;
 	}
 
-	public void setForums(Set<Forum> forums) {
-		this.forums = forums;
+	public void setForumMembers(Set<ForumMember> forumMembers) {
+		this.forumMembers = forumMembers;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "course")

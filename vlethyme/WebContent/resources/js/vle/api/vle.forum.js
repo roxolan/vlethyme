@@ -1,8 +1,8 @@
 define(['exports', 'jquery'], function(exports, $) {
 	
-	var createGroup = exports.createGroup = function (group, callback) {
-        if (!group || !group.name) {
-             throw new Error('A group displayName should be provided');
+	var createForum = exports.createForum = function (forum, callback) {
+        if (!forum || !forum.title) {
+             throw new Error('A forum title should be provided');
         }
 
         // Set a default callback function in case no callback function has been provided
@@ -10,9 +10,9 @@ define(['exports', 'jquery'], function(exports, $) {
 
 
         $.ajax({
-            'url': '/group/createGroup',
+            'url': '/forum/createForum',
             'type': 'POST',
-            'data': JSON.stringify(group),
+            'data': JSON.stringify(forum),
             'contentType': "application/json",
 			'dataType': "json",
             'success': function(data) {
@@ -24,9 +24,9 @@ define(['exports', 'jquery'], function(exports, $) {
         });
     };
     
-	var getMyGroups = exports.getMyGroups = function(callback) {
+	var getMyForums = exports.getMyForums = function(callback) {
 		$.ajax({
-            'url': '/group/mygroups',
+            'url': '/forum/myforums',
             'type': 'GET',
             'success': function(data) {
                 callback(null, data);
@@ -37,9 +37,9 @@ define(['exports', 'jquery'], function(exports, $) {
         });
 	};
 	
-	var getUserAllGroups = exports.getUserAllGroups = function(userId, callback) {
+	var getUserAllForums = exports.getUserAllForums = function(userId, callback) {
 		$.ajax({
-            'url': '/group/getUserAllGroups',
+            'url': '/forum/getUserAllForums',
             'type': 'GET',
             'data': {userId: userId},
             'success': function(data) {
@@ -51,11 +51,11 @@ define(['exports', 'jquery'], function(exports, $) {
         });
 	};
 	
-	var getGroup = exports.getGroup = function(groupId, callback) {
+	var getForum = exports.getForum = function(forumId, callback) {
 		$.ajax({
-            'url': '/group/getGroupById',
+            'url': '/forum/getForumById',
             'type': 'GET',
-            'data' : {groupId : groupId},
+            'data' : {forumId : forumId},
             'success': function(data) {
                 callback(null, data);
             },
@@ -65,11 +65,11 @@ define(['exports', 'jquery'], function(exports, $) {
         });
 	};
 	
-	var getGroupMembers = exports.getGroupMembers = function(groupId, callback) {
+	var getForumMembers = exports.getForumMembers = function(forumId, callback) {
 		$.ajax({
-            'url': '/group/getGroupMembers',
+            'url': '/forum/getForumMembers',
             'type': 'GET',
-            'data' : {groupId : groupId},
+            'data' : {forumId : forumId},
             'success': function(data) {
                 callback(null, data);
             },
@@ -79,15 +79,15 @@ define(['exports', 'jquery'], function(exports, $) {
         });
 	};
 	
-	var updateGroupMembers = exports.updateGroupMembers = function (group, callback) {
+	var updateForumMembers = exports.updateForumMembers = function (forum, callback) {
 		// Set a default callback function in case no callback function has been provided
         callback = callback || function() {};
 
 
         $.ajax({
-            'url': '/group/updateGroupMembers',
+            'url': '/forum/updateForumMembers',
             'type': 'POST',
-            'data': JSON.stringify(group),
+            'data': JSON.stringify(forum),
             'contentType': "application/json",
 			'dataType': "json",
             'success': function(data) {

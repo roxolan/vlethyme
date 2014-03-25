@@ -51,10 +51,7 @@ public class HomeController {
 		return "me-courses";
 	}
 	
-	@RequestMapping(value = "/me/groups")
-	public String showMeGroups() {
-		return "me-groups";
-	}
+	
 	
 	@RequestMapping(value = "/me/users")
 	public String showMeUsers() {
@@ -66,10 +63,7 @@ public class HomeController {
 		return "me-content";
 	}
 	
-	@RequestMapping(value = "/me/discussions")
-	public String showMeDiscussions() {
-		return "me-discussions";
-	}
+	
 	
 	@RequestMapping(value = "/me/network")
 	public String showMeNetwork() {
@@ -126,6 +120,15 @@ public class HomeController {
 		return "discussion";
 	}
 
+	@RequestMapping(value = "/partials/forumslibrary")
+	public String showForumsLibrary() {
+		return "partials/forumslibrary";
+	}
+	
+	@RequestMapping(value = "/partials/groups")
+	public String showGroups() {
+		return "partials/groups";
+	}
 	
 	@RequestMapping(value = "/partials/contentlibrary")
 	public String showContentLibraries() {

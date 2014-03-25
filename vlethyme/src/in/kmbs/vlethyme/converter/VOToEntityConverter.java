@@ -1,5 +1,8 @@
 package in.kmbs.vlethyme.converter;
 
+import in.kmbs.vlethyme.entity.Forum;
+import in.kmbs.vlethyme.entity.ForumMember;
+import in.kmbs.vlethyme.entity.ForumPost;
 import in.kmbs.vlethyme.entity.Group;
 import in.kmbs.vlethyme.entity.GroupUser;
 import in.kmbs.vlethyme.entity.Role;
@@ -16,6 +19,37 @@ public class VOToEntityConverter {
 		}
 		return groupEntity;
 	}
+	
+	public static Forum convert(in.kmbs.vlethyme.model.Forum forum) {
+		Forum forumEntity = null;
+		if (forum != null) {
+			forumEntity = new Forum();
+			forumEntity.setId(forum.getId());
+			forumEntity.setTitle(forum.getTitle());
+			forumEntity.setContent(forum.getContent());
+		}
+		return forumEntity;
+	}
+	
+	public static ForumPost convert(in.kmbs.vlethyme.model.ForumPost forumPost) {
+		ForumPost forumPostEntity = null;
+		if (forumPost != null) {
+			forumPostEntity = new ForumPost();
+			forumPostEntity.setId(forumPost.getId());
+			forumPostEntity.setContent(forumPost.getContent());
+		}
+		return forumPostEntity;
+	}
+	
+	public static ForumMember convert(in.kmbs.vlethyme.model.ForumMember forumMember) {
+		ForumMember forumMemberEntity = null;
+		if (forumMember != null) {
+			forumMemberEntity = new ForumMember();
+			forumMemberEntity.setId(forumMember.getId());
+		}
+		return forumMemberEntity;
+	}
+
 
 	public static User convert(in.kmbs.vlethyme.model.User user) {
 		User userEntity = null;

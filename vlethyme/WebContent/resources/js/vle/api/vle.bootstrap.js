@@ -20,7 +20,8 @@ requirejs.config({
         'vle.core': 'js/vle/api/vle.core',
         'vle.group': 'js/vle/api/vle.group',
         'vle.util': 'js/vle/api/vle.util',
-        'vle.user': 'js/vle/api/vle.user'
+        'vle.user': 'js/vle/api/vle.user',
+    	'vle.forum': 'js/vle/api/vle.forum'
     },
     'priority': ['jquery', 'underscore'],
     // angular does not support AMD out of the box, put it in a shim

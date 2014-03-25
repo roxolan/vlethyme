@@ -47,10 +47,29 @@ require(['require','jquery', 'bootstrap', 'angular', 'angular-route', 'ng-bootst
 	          controller: 'DiscussionsController'
 	      }).
 	      when('/groups', {
-	          templateUrl: '/groups',
-	          name : 'members',
-	          controller: 'GroupsController'
-	      }).
+	            templateUrl: '/partials/groups',
+	            controller: 'GroupsController',
+	            resolve: {
+		        	deps: function($q, $rootScope) {
+		        		var deferred = $q.defer();
+		        		var dependencies =
+		                    [
+		                     	'/static/js/groups.js'
+		                    ];
+		        		require(dependencies, function()
+		        			    {
+		        	        // all dependencies have now been loaded by so resolve the promise
+		        	        $rootScope.$apply(function()
+		        	        {
+		        	            deferred.resolve();
+		        	        });
+		        	    });
+		        		return deferred.promise;
+		        	},
+		        	
+		        	parameters : function() { return {userId: userId, canManage : false};}
+		        }
+          }).
 	      when('/network', {
 	          templateUrl: '/network',
 	          name : 'members',

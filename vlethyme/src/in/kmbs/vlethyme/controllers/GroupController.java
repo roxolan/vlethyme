@@ -58,6 +58,32 @@ public class GroupController {
 
 		return groups;
 	}
+	
+	@RequestMapping(value = "getUserAllGroups")
+	public @ResponseBody
+	List<in.kmbs.vlethyme.model.Group> getUserAllGroups(@RequestParam Integer userId) {
+		List<Group> groupsEntity = groupService.getGroupsByUserId(userId);
+
+		List<in.kmbs.vlethyme.model.Group> groups = new ListVOConverter<in.kmbs.vlethyme.model.Group>() {
+
+			@Override
+			public List<in.kmbs.vlethyme.model.Group> convertTOVO(@SuppressWarnings("rawtypes") List entityList) {
+				if (CollectionUtils.isNotEmpty(entityList)) {
+					@SuppressWarnings("unchecked")
+					List<Group> groupsEntity = (List<Group>) entityList;
+					List<in.kmbs.vlethyme.model.Group> groups = new ArrayList<in.kmbs.vlethyme.model.Group>(entityList.size());
+					for (Group groupEntity : groupsEntity) {
+						in.kmbs.vlethyme.model.Group group = EntityToVOConverter.convert(groupEntity);
+						groups.add(group);
+					}
+					return groups;
+				}
+				return null;
+			}
+		}.convertTOVO(groupsEntity);
+
+		return groups;
+	}
 
 	@RequestMapping(value = "getGroupById")
 	public @ResponseBody

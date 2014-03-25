@@ -1,0 +1,177 @@
+<link rel="stylesheet" type="text/css" th:href="@{static/css/creatediscussion.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{static/css/setpermissions.css}" />
+<div class="row-fluid" id="discussionslibrary">
+	<div class="span12">
+		<div id="lhnavigation-page-discussionslibrary">
+			<div id="discussionslibrary-widget" class="vle-list-container">
+			    <div class="vle-list-options">
+			        <div>
+			            <button class="btn vle-list-options-toggle">
+			                <h2>Discussions<i class="icon-caret-down"></i></h2>
+			            </button>
+			            <div class="pull-right">
+			                <form class="form-search" id="discussionslibrary-search-form">
+			                    <label class="vle-aural-text" for="discussionslibrary-search-query">Narrow by keyword</label>
+			                    <input type="text" id="discussionslibrary-search-query" class="search-query" placeholder="Narrow by keyword"/>
+			                </form>
+			            </div>
+			        </div>
+			        <div class="vle-list-options-actions hide">
+			        	<input type="checkbox" id="discussionslibrary-selectall" class="vle-list-selectall" />
+    					<label for="discussionslibrary-selectall" class="vle-aural-text">Select all</label>
+    					<button type="button" class="btn vle-trigger-share" disabled="disabled" data-resourceType="discussion"><i class="icon-share pull-left"></i>Share</button>
+    					<button ng-if="parameters.canManage" type="button" class="btn vle-trigger-deleteresources" disabled="disabled" data-resourceType="discussion">
+    						<i class="icon-trash pull-left"></i>Delete
+    					</button>
+    					<div class="btn-group pull-right">
+	        				<button class="btn" data-type="vle-list-compact">
+		            			<i class="icon-list"></i>
+		            			<span class="vle-aural-text">List view</span>
+	        				</button>
+        					<button class="btn" data-type="vle-list-details">
+            					<i class="icon-th-list"></i>
+            					<span class="vle-aural-text">Expanded list view</span>
+        					</button>
+        					<button class="btn active" data-type="vle-list-grid">
+					            <i class="icon-th-large"></i>
+					            <span class="vle-aural-text">Grid view</span>
+					        </button>
+    					</div>
+			        </div>
+			    </div>
+   				<ul class="vle-list vle-list-grid" aria-live="assertive">
+					<li class="vle-list-actions">
+				        <div class="vle-thumbnail vle-thumbnail-large icon-vle-discussion"></div>
+				        <ul>
+				            <li>
+				                <button type="button" class="btn vle-trigger-creatediscussion" ng-click="startForum()">
+				                    <i class="icon-plus-sign pull-left"></i>Start discussion
+				                </button>
+				            </li>
+				        </ul>
+				    </li>
+				    <li ng-repeat="forum in forums">
+	            		<div class="vle-list-grid-item">
+	                		<div class="vle-tile">
+	    						<div class="vle-thumbnail vle-thumbnail-large icon-vle- icon-vle-discussion">
+									<a href="/forum/{{forum.id}}" ng-title="forum.title"></a>
+								</div>
+								<div class="vle-tile-metadata">
+	                            	<i class="icon-vle-public pull-right"></i>
+									<h3 class="vle-threedots">
+										<a href="/forum/{{forum.id}}" ng-title="forum.title" ng-bind="forum.title"></a>
+									</h3>
+	         						<small class="vle-threedots">Discussion</small>
+	
+	                    		</div>
+	                		</div>
+	                        <input type="checkbox" class="pull-left" data-resourcetype="discussion" data-resourcesubtype=""/>
+	        				<label class="vle-aural-text"  ng-bind="forum.title">JDK 8</label>
+	
+						</div>
+						<div class="vle-list-details-item">
+							<div class="vle-listitem">
+								<input type="checkbox" class="pull-left" id="vle-list-details-d:oae:ey6FQ1SLs" data-id="d:oae:ey6FQ1SLs" data-resourcetype="discussion" data-resourcesubtype=""/>
+								<label class="vle-aural-text" for="vle-list-details-d:oae:ey6FQ1SLs">JDK 8</label>
+								<div class="vle-thumbnail icon-vle- icon-vle-discussion" data-id="d:oae:ey6FQ1SLs">
+									<a href="/forum/{{forum.id}}" ng-title="forum.title"><i class="icon-vle-public"></i></a>
+								</div>
+								<div>
+									<h3 class="vle-threedots"><a href="/forum/{{forum.id}}" ng-title="forum.title" ng-bind="forum.title"></a></h3>
+	         						<small class="vle-threedots">Discussion</small>
+								</div>
+	                		</div>
+	            		</div>
+						<div class="vle-list-compact-item">
+			                <div class="vle-listitem vle-listitem-compact">
+								<input type="checkbox" class="pull-left" id="vle-list-compact-d:oae:ey6FQ1SLs" data-id="d:oae:ey6FQ1SLs" data-resourcetype="discussion" data-resourcesubtype=""/>
+			        			<label class="vle-aural-text" for="vle-list-compact-d:oae:ey6FQ1SLs" ng-bind="forum.title"></label>
+								<div class="vle-thumbnail icon-vle- icon-vle-discussion" data-id="d:oae:ey6FQ1SLs">
+									<a href="/discussion/oae/ey6FQ1SLs" title="JDK 8"><i class="icon-vle-public"></i></a>
+								</div>
+								<div>
+									<h3 class="vle-threedots"><a href="/forum/{{forum.id}}" ng-title="forum.title" ng-bind="forum.title"></a></h3>
+					         		<small class="vle-threedots">Discussion</small>
+								</div>
+							</div>
+						</div>
+        			</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/ng-template" class="template" id="StartForumTemplate">
+<!-- Modal -->
+<div id="creatediscussion-modal" class="modal-content">
+	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#215;</button>
+        <h3 id="creatediscussion-modal-title">Start Discussion</h3>
+    </div>
+    <form id="creatediscussion-form">
+        <div class="modal-body">
+            <div id="creatediscussion-overview-container" ng-show="view == 'overview'">
+                <div class="control-group">
+                    <label for="creatediscussion-name"><h4>Discussion name</h4></label>
+                    <div class="controls">
+                        <input type="text" id="creatediscussion-name" class="required maxlength-short" name="creatediscussion-name" placeholder="What would you like to call your forum?" ng-model="forum.title"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="creatediscussion-topic"><h4>Discussion Topic</h4></label>
+                    <div class="controls">
+                        <textarea id="creatediscussion-topic" class="required maxlength-medium" name="creatediscussion-topic" placeholder="What would you like to discuss?"  ng-model="forum.content"/>
+                    </div>
+                </div>
+                <div id="creatediscussion-permissions" class="well">
+                    <button type="button" id="creatediscussion-change-permissions" class="btn pull-right" ng-click="changeView('permissions')">Change</button>
+                    <div id="creatediscussion-permissions-summary">
+					<i class="{{'icon-dummy ' + (forum.visibility == 1 &amp;&amp; 'icon-vle-private' || (forum.visibility == 2 &amp;&amp; 'icon-vle-loggedin' || (forum.visibility == 3 &amp;&amp; 'icon-vle-public'))) + ' large pull-left'}}"></i>
+    					<div>
+                           This discussion will be added to <strong>My discussions</strong>.
+                     	   <span ng-if="forum.visibility == 1">It will be <strong>private</strong> and only visible to the people and groups you share it with.</span>
+						   <span ng-if="forum.visibility == 2">It can be found, seen and posted into by all people in <strong>Open Academic Environment</strong>.</span>
+						   <span ng-if="forum.visibility == 3">It will be <strong>public</strong> and can be found and seen by anyone. All logged in users will be able to post to the discussion.</span>
+     					</div>
+					</div>
+                </div>
+            </div>
+            <div id="creatediscussion-permissions-container" ng-show="view == 'permissions'">
+				<div>
+					<div id="setpermissions-container">
+						<h4>Visibility</h4>
+    					<label>
+        					<input type="radio" ng-value="1" name="setpermissions-visibility" class="pull-left" ng-model="forum.visibility"/>
+        					<i class="icon-vle-private pull-left"></i>
+        					<span>Private</span>
+    					</label>
+    					<label>
+	        				<input type="radio" ng-value="2" name="setpermissions-visibility" class="pull-left" ng-model="forum.visibility"/>
+        					<i class="icon-vle-loggedin pull-left"></i>
+        					<span>Open Academic Environment</span>
+    					</label>
+    					<label>
+	        				<input type="radio" ng-value="3" name="setpermissions-visibility" class="pull-left" ng-model="forum.visibility"/>
+        					<i class="icon-vle-public pull-left"></i>
+        					<span>Public</span>
+    					</label>
+    					<h4>Share with</h4>
+    					<input type="text" id="setpermissions-share" placeholder="Enter name here"/>
+    					<div id="setpermissions-footer" class="modal-footer">
+	        				<button type="button" class="btn btn-link pull-left" id="setpermissions-cancelpermissions" ng-click="changeView('overview')">Cancel</button>
+        					<button type="button" class="btn btn-primary pull-right" id="setpermissions-savepermissions" ng-click="updatePermissions()">Update</button>
+    					</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="modal-footer" ng-show="view == 'overview'">
+            <button type="button" class="btn btn-link pull-left" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="creatediscussion-create" class="btn btn-primary pull-right">Start Discussion</button>
+        </div>
+    </form>
+</div>
+
+</script>

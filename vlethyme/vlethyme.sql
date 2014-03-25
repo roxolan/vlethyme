@@ -91,21 +91,68 @@ CREATE TABLE `event_user` (
 DROP TABLE IF EXISTS `forum`;
 
 CREATE TABLE `forum` (
-  `id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
   `content` text,
   `create_date` datetime DEFAULT NULL,
   `modify_date` varchar(45) DEFAULT NULL,
-  `courseId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_forum_course1` (`courseId`),
   KEY `fk_forum_user1` (`userId`),
-  CONSTRAINT `fk_forum_course1` FOREIGN KEY (`courseId`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_forum_user1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `forum` */
+
+insert  into `forum`(`id`,`title`,`content`,`create_date`,`modify_date`,`userId`) values (2,'JDK8','New features',NULL,NULL,1),(3,'a','asd',NULL,NULL,1);
+
+/*Table structure for table `forum_member` */
+
+DROP TABLE IF EXISTS `forum_member`;
+
+CREATE TABLE `forum_member` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `forumId` int(10) unsigned NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `groupId` int(11) DEFAULT NULL,
+  `courseId` int(11) DEFAULT NULL,
+  `roleId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_forummember_forum` (`forumId`),
+  KEY `fk_forummember_user` (`userId`),
+  KEY `fk_forummember_group` (`groupId`),
+  KEY `fk_forummember_course` (`courseId`),
+  KEY `fk_forummember_role` (`roleId`),
+  CONSTRAINT `fk_forummember_role` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`),
+  CONSTRAINT `fk_forummember_course` FOREIGN KEY (`courseId`) REFERENCES `course` (`id`),
+  CONSTRAINT `fk_forummember_forum` FOREIGN KEY (`forumId`) REFERENCES `forum` (`id`),
+  CONSTRAINT `fk_forummember_group` FOREIGN KEY (`groupId`) REFERENCES `group` (`id`),
+  CONSTRAINT `fk_forummember_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `forum_member` */
+
+insert  into `forum_member`(`id`,`forumId`,`userId`,`groupId`,`courseId`,`roleId`) values (1,2,1,NULL,NULL,7),(2,3,1,NULL,NULL,7);
+
+/*Table structure for table `forum_post` */
+
+DROP TABLE IF EXISTS `forum_post`;
+
+CREATE TABLE `forum_post` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `forumId` int(10) unsigned NOT NULL,
+  `parentPostId` int(10) unsigned DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `content` text NOT NULL,
+  `userId` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_fp_forum` (`forumId`),
+  KEY `fk_fp_user` (`userId`),
+  CONSTRAINT `fk_fp_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  CONSTRAINT `fk_fp_forum` FOREIGN KEY (`forumId`) REFERENCES `forum` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `forum_post` */
 
 /*Table structure for table `grade` */
 
@@ -152,11 +199,11 @@ CREATE TABLE `group` (
   PRIMARY KEY (`id`),
   KEY `fk_group_user1` (`userId`),
   CONSTRAINT `fk_group_user1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `group` */
 
-insert  into `group`(`id`,`name`,`userId`,`created_date`) values (1,'Java Group',1,'2014-03-18 14:53:50'),(2,'asdasd',1,NULL),(4,'test',1,NULL),(5,'for me',1,NULL);
+insert  into `group`(`id`,`name`,`userId`,`created_date`) values (1,'Java Group',1,'2014-03-18 14:53:50'),(2,'asdasd',1,NULL),(4,'test',1,NULL),(5,'for me',1,NULL),(10,'pmba5group',1,NULL),(11,'pmba5group2',1,NULL),(12,'emba17group',2,NULL);
 
 /*Table structure for table `group_user` */
 
@@ -171,14 +218,13 @@ CREATE TABLE `group_user` (
   KEY `fk_usergroup_user` (`userId`),
   KEY `fk_usergroup_group` (`groupId`),
   KEY `fk_group_user_role1` (`roleId`),
-  CONSTRAINT `fk_group_user_role1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usergroup_group` FOREIGN KEY (`groupId`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usergroup_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_groupuser_group` FOREIGN KEY (`groupId`) REFERENCES `group` (`id`),
+  CONSTRAINT `fk_group_user_role1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 /*Data for the table `group_user` */
 
-insert  into `group_user`(`id`,`userId`,`groupId`,`roleId`) values (1,1,1,4),(2,1,2,4),(5,1,4,4),(6,1,5,4);
+insert  into `group_user`(`id`,`userId`,`groupId`,`roleId`) values (1,1,1,4),(2,1,2,4),(5,1,4,4),(6,1,5,4),(14,1,10,4),(15,1,11,4),(16,2,12,4),(18,2,4,5);
 
 /*Table structure for table `message` */
 
@@ -282,11 +328,11 @@ CREATE TABLE `role` (
   `name` varchar(100) NOT NULL,
   `type` tinyint(2) DEFAULT NULL COMMENT '1 - User, 2 - Group Member',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `role` */
 
-insert  into `role`(`id`,`name`,`type`) values (1,'USER_STUDENT',1),(2,'USER_TEACHER',1),(3,'USER_MANAGER',1),(4,'GROUP_MEMBER_MANAGER',2),(5,'GROUP_MEMBER_MEMBER',2);
+insert  into `role`(`id`,`name`,`type`) values (1,'USER_STUDENT',1),(2,'USER_TEACHER',1),(3,'USER_MANAGER',1),(4,'GROUP_MEMBER_MANAGER',2),(5,'GROUP_MEMBER_MEMBER',2),(6,'FORUM_MEMBER_VIEW',3),(7,'FORUM_MEMBER_MANAGE',3);
 
 /*Table structure for table `room` */
 
@@ -416,12 +462,14 @@ CREATE TABLE `user` (
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `username` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `fk_user_role` (`roleId`),
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`roleId`,`firstName`,`lastName`,`email`,`password`,`username`) values (1,1,'pmba5user','pmba5user','agabhi@gmail.com','pmba5user','pmba5user'),(2,1,'emba17user','emba17user','emba17user@gmail.com','emba17user','emba17user'),(3,1,'emba18user','emba18user','emba18user@gmail.com','emba18user','emba18user');
+insert  into `user`(`id`,`roleId`,`firstName`,`lastName`,`email`,`password`,`username`) values (1,1,'pmba5user','pmba5user','agabhi@gmail.com','pmba5user','pmba5user'),(2,1,'emba17user','emba17user','emba17user@gmail.com','emba17user','emba17user'),(3,1,'emba18user','emba18user','emba18user@gmail.com','emba18user','emba18user'),(7,1,'Abhishek','Agarwal','agabhi@gmail.com','bhaiyu86','agabhi'),(8,2,'Meeti','Agarwal','meetig@gmail.com','bhaiyu86','meetig');
 
 /*Table structure for table `user_course` */
 
