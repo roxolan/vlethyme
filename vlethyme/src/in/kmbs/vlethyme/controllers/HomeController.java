@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -125,8 +126,14 @@ public class HomeController {
 		return "discussion";
 	}
 
-	@RequestMapping(value = "/user")
-	public String showUser() {
+	
+	@RequestMapping(value = "/partials/contentlibrary")
+	public String showContentLibraries() {
+		return "partials/contentlibrary";
+	}
+	
+	@RequestMapping(value = " /user/{userId}", method=RequestMethod.GET)
+	public String getOrder(@PathVariable Integer userId){
 		return "user";
 	}
 

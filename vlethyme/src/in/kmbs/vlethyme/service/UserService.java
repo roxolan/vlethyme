@@ -48,6 +48,10 @@ public class UserService {
 	public List<User> findUsersByNameLike(String name, int limit) {
 		return userDAO.findUsersByNameLike(name, limit);
 	}
+	
+	public User findUserById(Integer userId) {
+		return userDAO.findUserById(userId);
+	}
 
 	public void createUser(User user) {
 		userDAO.createUser(user);

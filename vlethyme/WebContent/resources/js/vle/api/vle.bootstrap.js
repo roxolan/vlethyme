@@ -1,5 +1,5 @@
 requirejs.config({
-    'baseUrl': 'static',
+    'baseUrl': '/static',
     'paths': {
         'jquery': 'js/vendor/jquery-1.9.1.min',
         'jquery.autosuggest': 'js/vendor/jquery-plugins/jquery.autoSuggest',

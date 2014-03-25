@@ -1,7 +1,6 @@
 package in.kmbs.vlethyme.controllers;
 
 import in.kmbs.vlethyme.converter.EntityToVOConverter;
-import in.kmbs.vlethyme.entity.Group;
 import in.kmbs.vlethyme.entity.User;
 import in.kmbs.vlethyme.service.UserService;
 
@@ -58,7 +57,16 @@ public class UserController {
 
 		return users;
 	}
-	
+
+	@RequestMapping(value = "getUserById")
+	public @ResponseBody
+	in.kmbs.vlethyme.model.User getUSerById(@RequestParam Integer userId) {
+		User userEntity = userService.findUserById(userId);
+
+		in.kmbs.vlethyme.model.User userModel = EntityToVOConverter.convert(userEntity);
+		return userModel;
+	}
+
 	@RequestMapping(value = "isUsernameAvailable", method = RequestMethod.GET)
 	public @ResponseBody
 	boolean isUsernameAvailable(@RequestParam String username) {
@@ -69,7 +77,7 @@ public class UserController {
 			return true;
 		}
 	}
-	
+
 	@RequestMapping(value = "createUser", method = RequestMethod.POST)
 	public @ResponseBody
 	in.kmbs.vlethyme.model.User createUser(@RequestBody String requestString) throws JsonParseException, JsonMappingException, IOException {
@@ -83,7 +91,7 @@ public class UserController {
 		userModel.setRole(EntityToVOConverter.convert(user.getRole()));
 		return userModel;
 	}
-	
+
 	@RequestMapping(value = "findUsersByNameLike")
 	public @ResponseBody
 	List<in.kmbs.vlethyme.model.User> findUsersByNameLike(@RequestParam String q, HttpServletRequest request) {

@@ -56,7 +56,7 @@ define(['exports', 'jquery'], function(exports, $) {
 		$.ajax({
             'url': '/user/getUserById',
             'type': 'GET',
-            'data' : {groupId : groupId},
+            'data' : {userId : userId},
             'success': function(data) {
                 callback(null, data);
             },

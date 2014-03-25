@@ -41,6 +41,13 @@ public class UserDAO {
 		return user;
 	}
 	
+	public User findUserById(Integer userId) {
+		Criteria criteria = getSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("id", userId));
+		User user = (User) criteria.uniqueResult();
+		return user;
+	}
+	
 	public List<User> getUsers() {
 		Criteria criteria = getSession().createCriteria(User.class);
 		@SuppressWarnings("unchecked")
